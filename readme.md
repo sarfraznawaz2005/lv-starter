@@ -7,7 +7,6 @@ Laravel Starter project with useful laravel packages needed for most apps.
 - Clone or download the repository
 - Run `composer install`
 - Run `npm install`
-- Run `php artisan storage:link`
 - Run `php artisan vendor:publish --all`
 - Run `php artisan module:publish`
 - Run `php artisan module:publish-migration`
