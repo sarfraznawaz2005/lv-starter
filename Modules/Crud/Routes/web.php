@@ -1,9 +1,6 @@
 <?php
 
-Route::group([
-    'middleware' => 'web',
-    'namespace' => 'Modules\Crud\Http\Controllers'
-], function () {
+Route::group(['middleware' => 'XSSProtection'], function () {
 
     Route::group([
         'middleware' => [
@@ -26,3 +23,6 @@ Route::group([
     });
 
 });
+
+
+

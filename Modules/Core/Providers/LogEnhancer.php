@@ -15,7 +15,8 @@ class LogEnhancer extends ServiceProvider
 
     public function boot()
     {
-        $logger = \Log::getMonolog();
+        //$logger = \Log::getMonolog();
+        $logger = \Log::getLogger();
 
         // Additional info in message
         $logger->pushProcessor(function ($record) {

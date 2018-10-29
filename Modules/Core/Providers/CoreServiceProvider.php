@@ -72,8 +72,7 @@ class CoreServiceProvider extends ServiceProvider
             // disable query log
             queryLog(false);
 
-            // disable debugbar
-            config(['debugbar.enabled' => false]);
+
             config(['pretty-routes.url' => '']);
         }
     }
@@ -85,7 +84,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->register(RouteServiceProvider::class);
     }
 
     /**

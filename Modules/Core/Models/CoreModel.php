@@ -10,8 +10,6 @@ namespace Modules\Core\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use KingOfCode\Upload\Uploadable;
-use Sarfraznawaz2005\Eventable\Eventable;
 use Watson\Validating\ValidatingTrait;
 
 /**
@@ -22,8 +20,6 @@ use Watson\Validating\ValidatingTrait;
 class CoreModel extends Model
 {
     use ValidatingTrait;
-    use Uploadable;
-    use Eventable;
 
     # added to get Cacheable trait working because Ardent was changing this function
     # which was affecting Cacheable trait
