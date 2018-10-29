@@ -45,7 +45,6 @@ class Cleanup extends CoreCommand
         Artisan::call('cache:clear');
         Artisan::call('config:clear');
         Artisan::call('view:clear');
-        Artisan::call('optimize');
 
         // clean cache folder
         File::cleanDirectory(storage_path('framework/cache'));

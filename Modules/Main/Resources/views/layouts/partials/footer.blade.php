@@ -21,7 +21,6 @@
 
 @stack('scripts')
 
-@include('sweet::alert')
 @include('noty::view')
 
 @if (config('core.settings.enable_socket'))
