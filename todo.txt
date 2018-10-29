@@ -1,12 +1,12 @@
 php artisan vendor:publish --all
 
 telescope / remove existing clockwork, etc
-compare laravel config files also add missing/manually created files such as socket.php
 php artisan module:make Task and compare (New way of handling routes by default using a RouteServiceProvider (instead of start.php))
 applogs, routes, crud, terminal, etc and their favicons
 vendor/resources compare
 terminal branding
 vendor cleanup command in composer
+built-in MustVerifyEmail
 
 https://github.com/BePsvPT/secure-headers (add middleware in coreserviceprovider)
 

@@ -1,0 +1,25 @@
+{
+  "name": "eTeam/core",
+  "description": "The core/system module.",
+  "license": "EULA",
+  "authors": [
+    {
+      "name": "Sarfraz Ahmed",
+      "email": "sarfraznawaz2005@gmail.com"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Modules\\Core\\Providers\\CoreServiceProvider"
+      ],
+      "aliases": {
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Modules\\Core\\": ""
+    }
+  }
+}

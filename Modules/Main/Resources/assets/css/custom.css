@@ -1,0 +1,176 @@
+/* custom site css */
+
+/* @formatter:off */
+/* colors start */
+.bg-blue {background-color:#007bff !important;}
+.bg-indigo {background-color:#6610f2 !important;}
+.bg-purple {background-color:#6f42c1 !important;}
+.bg-pink {background-color:#e83e8c !important;}
+.bg-red {background-color:#dc3545 !important;}
+.bg-orange {background-color:#fd7e14 !important;}
+.bg-yellow {background-color:#ffc107 !important;}
+.bg-green {background-color:#28a745 !important;}
+.bg-teal {background-color:#20c997 !important;}
+.bg-cyan {background-color:#17a2b8 !important;}
+.bg-gray {background-color:#6c757d !important;}
+.bg-gray-dark {background-color:#343a40 !important;}
+.bg-primary {background-color:#007bff !important;}
+.bg-secondary {background-color:#6c757d !important;}
+.bg-success {background-color:#28a745 !important;}
+.bg-info {background-color:#17a2b8 !important;}
+.bg-warning {background-color:#ffc107 !important;}
+.bg-danger {background-color:#dc3545 !important;}
+
+.text-blue {color:#007bff !important;}
+.text-indigo {color:#6610f2 !important;}
+.text-purple {color:#6f42c1 !important;}
+.text-pink {color:#e83e8c !important;}
+.text-red {color:#dc3545 !important;}
+.text-orange {color:#fd7e14 !important;}
+.text-yellow {color:#ffc107 !important;}
+.text-green {color:#28a745 !important;}
+.text-teal {color:#20c997 !important;}
+.text-cyan {color:#17a2b8 !important;}
+.text-gray {color:#6c757d !important;}
+.text-gray-dark {color:#343a40 !important;}
+.text-primary {color:#007bff !important;}
+.text-secondary {color:#6c757d !important;}
+.text-success {color:#28a745 !important;}
+.text-info {color:#17a2b8 !important;}
+.text-warning {color:#ffc107 !important;}
+.text-danger {color:#dc3545 !important;}
+/* colors end */
+/* @formatter:on */
+
+html {
+    position: relative;
+    min-height: 100%;
+    font-size: 14px;
+}
+
+body {
+    /* Margin bottom by footer height */
+    /*margin-bottom: 60px;*/
+    font-size: 14px;
+}
+
+.main {
+    margin-bottom: 100px;
+}
+
+a {
+    outline: none;
+}
+
+header {
+    padding: 55px 0 5px;
+}
+
+header .page-title h1 {
+    font-size: 26px;
+    margin-bottom: 0;
+    padding: 5px 0;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+.footer .text-muted {
+    margin-bottom: 0;
+}
+
+body > .container {
+    padding: 20px 15px 0;
+}
+
+.jumbotron {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+::selection {
+    color: #fff;
+    background: #e83e8c;
+}
+
+nav ul li:hover, nav ul li.active {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+nav ul li {
+    padding: 0 10px;
+}
+
+.dropdown-item.active, .dropdown-item:active, .dropdown-item:focus, .dropdown-item:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-menu {
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    nav ul li {
+        padding: 8px 10px;
+    }
+
+    nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top {
+        padding: 0;
+    }
+
+    nav li.nav-item {
+        height: 50px;
+    }
+}
+
+table thead tr {
+    background-image: radial-gradient(#eee, #eee) !important;
+    color: #666;
+}
+
+.nav-tabs a.nav-link {
+    font-weight: bold;
+}
+
+.nav-tabs .nav-link {
+    padding: 0.9rem 1rem;
+}
+
+.table td {
+    padding: 0.30rem;
+    vertical-align: middle;
+}
+
+.dataTable td {
+    padding: 0.10rem 0.50rem;
+    vertical-align: middle;
+}
+
+table.dataTable {
+    width: 100% !important;
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+    background: white;
+}
+
+.nav-tabs .nav-link {
+    border-bottom: 0;
+}

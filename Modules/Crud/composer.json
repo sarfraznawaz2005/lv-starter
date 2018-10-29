@@ -1,0 +1,31 @@
+{
+  "name": "eTeam/crud",
+  "description": "The module management module.",
+  "license": "EULA",
+  "authors": [
+    {
+      "name": "Sarfraz Ahmed",
+      "email": "sarfraznawaz2005@gmail.com"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Modules\\Crud\\Providers\\CrudServiceProvider"
+      ],
+      "aliases": {
+      }
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Modules\\Crud\\": ""
+    }
+  },
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
+}

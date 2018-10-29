@@ -1,0 +1,20 @@
+{
+  "name": "Task",
+  "alias": "task",
+  "description": "The sample task management module.",
+  "keywords": [],
+  "active": 1,
+  "order": 5,
+  "providers": [
+    "Modules\\Task\\Providers\\TaskServiceProvider",
+    "Modules\\Task\\Providers\\EventServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "start.php",
+    "Http\/breadcrumbs.php"
+  ],
+  "requires": [
+    "Core"
+  ]
+}

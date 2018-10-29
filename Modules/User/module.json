@@ -1,0 +1,19 @@
+{
+  "name": "User",
+  "alias": "user",
+  "description": "The user management module.",
+  "keywords": [],
+  "active": 1,
+  "order": 3,
+  "providers": [
+    "Modules\\User\\Providers\\UserServiceProvider",
+    "Modules\\User\\Providers\\EventServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "start.php"
+  ],
+  "requires": [
+    "Core"
+  ]
+}

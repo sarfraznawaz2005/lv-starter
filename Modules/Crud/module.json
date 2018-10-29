@@ -1,0 +1,19 @@
+{
+  "name": "Crud",
+  "alias": "crud",
+  "description": "The module manager module.",
+  "keywords": [],
+  "active": 1,
+  "order": 1,
+  "providers": [
+    "Modules\\Crud\\Providers\\CrudServiceProvider"
+  ],
+  "aliases": {},
+  "files": [
+    "start.php",
+    "macros.php"
+  ],
+  "requires": [
+    "Core"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Admin",
+    "alias": "admin",
+    "description": "The backend\/admin module.",
+    "keywords": [],
+    "active": 1,
+    "order": 4,
+    "providers": [
+        "Modules\\Admin\\Providers\\AdminServiceProvider"
+    ],
+    "aliases": [],
+    "files": [
+        "start.php",
+        "Http\/breadcrumbs.php"
+    ],
+    "requires": [
+        "Core"
+    ]
+}
