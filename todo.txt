@@ -1,0 +1,18 @@
+php artisan vendor:publish --all
+
+telescope / remove existing clockwork, etc
+compare laravel config files also add missing/manually created files such as socket.php
+php artisan module:make Task and compare (New way of handling routes by default using a RouteServiceProvider (instead of start.php))
+applogs, routes, crud, terminal, etc and their favicons
+vendor/resources compare
+terminal branding
+vendor cleanup command in composer
+
+https://github.com/BePsvPT/secure-headers (add middleware in coreserviceprovider)
+
+
+NOT INSTALLED:
+-------------------------
+uxweb/sweet-alert
+itsgoingd/clockwork => telescope
+kingofcode/laravel-uploadable => https://github.com/qcod/laravel-imageup
