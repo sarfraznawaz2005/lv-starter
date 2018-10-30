@@ -7,12 +7,6 @@
 
             @section('mycard.component_card_content')
 
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
                 {!! Former::open()->action(route('password.email'))->method('post')->class('validate') !!}
 
                 {!!

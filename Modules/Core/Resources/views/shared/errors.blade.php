@@ -1,3 +1,9 @@
+@if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+    </div>
+@endif
+
 @if (count($errors) > 0)
     <div class="alert alert-danger red-text animated shake">
         <strong><i class="glyphicon glyphicon-info-sign"></i> We found some errors:</strong><br>

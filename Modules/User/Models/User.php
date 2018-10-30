@@ -4,22 +4,24 @@ namespace Modules\User\Models;
 
 use Balping\HashSlug\HasHashSlug;
 use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Modules\Core\Models\CoreModel;
 use Modules\Core\Traits\Model\Purgeable;
 use Modules\Task\Models\Task;
-use Modules\User\Notifications\PasswordWasReset;
-use Modules\User\Notifications\UserWasRegistered;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends CoreModel implements AuthenticatableContract, CanResetPasswordContract, AuthorizableContract, MustVerifyEmail
+class User extends CoreModel implements
+    AuthenticatableContract,
+    AuthorizableContract,
+    CanResetPasswordContract,
+    MustVerifyEmail
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmailTrait;
     use Notifiable;
@@ -129,18 +131,6 @@ class User extends CoreModel implements AuthenticatableContract, CanResetPasswor
     public function isSuperAdmin()
     {
         return $this->admin == 1;
-    }
-
-    /**
-     * Override method of CanResetPassword
-     * Send the password reset notification.
-     *
-     * @param  string $token
-     * @return void
-     */
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new PasswordWasReset($token));
     }
 
     /**
