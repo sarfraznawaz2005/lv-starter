@@ -154,12 +154,7 @@ table thead tr {
 }
 
 .table td {
-    padding: 0.30rem;
-    vertical-align: middle;
-}
-
-.dataTable td {
-    padding: 0.10rem 0.50rem;
+    padding: 0.40rem 0.80rem;
     vertical-align: middle;
 }
 
