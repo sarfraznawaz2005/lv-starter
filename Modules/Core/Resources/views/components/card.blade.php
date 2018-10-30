@@ -38,7 +38,7 @@ Usage:
             <div class="clearfix"></div>
         </div>
     @endif
-    <div class="card-body" style="padding:5px 20px;">
+    <div class="card-body" style="padding:15px 20px;">
         <p class="card-text">@yield($id . '.component_card_content')</p>
     </div>
     @if (isset($show_card_footer) && $show_card_footer)

@@ -53,7 +53,7 @@ class AdminController extends CoreController
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
 
             // success
-            alert(user()->full_name . '!', 'Welcome!')->autoclose(3000);
+            noty('Welcome ' . user()->full_name);
 
             VisitLog::save();
 
@@ -79,12 +79,10 @@ class AdminController extends CoreController
         $this->guard()->logout();
 
         $request->session()->flush();
-
         $request->session()->regenerate();
-
         $request->session()->invalidate();
 
-        flash('You are logged out.', 'success');
+        noty('You are logged out.', 'warning');
 
         return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : 'admin');
     }

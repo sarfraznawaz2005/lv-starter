@@ -19,7 +19,7 @@ Route::group(['middleware' => 'XSSProtection'], function () {
 
     /*
     // SAMPLE RESTFUL ROUTES...
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('dashboard', 'TasksController@index')->name('dashboard');
         Route::post('tasks', 'TasksController@store')->name('task.store');
         Route::get('tasks/{task}/edit', 'TasksController@edit')->name('task.edit');

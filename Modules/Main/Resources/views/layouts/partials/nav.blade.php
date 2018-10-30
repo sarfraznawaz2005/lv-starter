@@ -18,23 +18,29 @@
                         <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
 
-                    @if(Auth::check() && Module::isEnabled('Task'))
-                        <li class="nav-item {{active(['task.index', 'task.edit'])}}"><a class="nav-link" href="{{route('task.index')}}">Tasks</a></li>
-                    @endif
+                    @auth
+                        @if(Module::isEnabled('Task'))
+                            <li class="nav-item {{active(['task.index', 'task.edit'])}}">
+                                <a class="nav-link" href="{{route('task.index')}}">Tasks</a>
+                            </li>
+                        @endif
+                    @endauth
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    @if(Auth::check() && user()->isSuperAdmin())
-                        @if(Module::isEnabled('Admin'))
-                            <li class="nav-item">
-                                <a class="nav-link" target="_blank" href="{{route('admin_login')}}">
-                                    <i class="fa fa-cog"></i> Admin Panel
-                                </a>
-                            </li>
+                    @auth
+                        @if(user()->isSuperAdmin())
+                            @if(Module::isEnabled('Admin'))
+                                <li class="nav-item">
+                                    <a class="nav-link" target="_blank" href="{{route('admin_login')}}">
+                                        <i class="fa fa-cog"></i> Admin Panel
+                                    </a>
+                                </li>
+                            @endif
                         @endif
-                    @endif
+                    @endauth
 
-                    @if (Auth::guest())
+                    @guest
                         @if(Module::isEnabled('User'))
                             @if(config('user.allow_user_registration', true))
                                 <li class="nav-item nav-item {{active('login')}}">
@@ -70,13 +76,13 @@
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                               style="display: none;">
-                                            {{ csrf_field() }}
+                                            @csrf
                                         </form>
                                     </div>
                                 </li>
                             @endif
                         @endif
-                    @endif
+                    @endguest
                 </ul>
 
             </div>

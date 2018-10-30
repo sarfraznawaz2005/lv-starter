@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('admin::partials.head')
 <body class="app sidebar-mini animated fadeIn">
 @include('admin::partials.nav')

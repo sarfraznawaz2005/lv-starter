@@ -3,6 +3,7 @@
 namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class VerificationController extends Controller
@@ -39,5 +40,14 @@ class VerificationController extends Controller
         $this->middleware('throttle:6,1')->only('verify', 'resend');
 
         $this->redirectTo = config('user.redirect_route_after_register', '/');
+    }
+
+    public function show(Request $request)
+    {
+        title('Account Not Verified');
+
+        return $request->user()->hasVerifiedEmail()
+            ? redirect($this->redirectPath())
+            : view('user::auth.verify');
     }
 }

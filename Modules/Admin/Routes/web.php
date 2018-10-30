@@ -16,7 +16,7 @@ Route::group(['middleware' => 'XSSProtection'], function () {
         #===========================================================#
         ### AUTHENTICATED ROUTES START ###
         #===========================================================#
-        Route::group(['middleware' => 'admin'], function () {
+        Route::group(['middleware' => ['admin', 'verified']], function () {
             Route::get('logout', 'AdminController@logout')->name('admin_logout');
             Route::get('panel', 'AdminController@index')->name('admin_panel');
 

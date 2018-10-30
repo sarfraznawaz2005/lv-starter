@@ -6,9 +6,9 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Modules\Core\Http\Controllers\CoreController;
 use Modules\User\Models\User;
-use Modules\User\Notifications\UserWasRegistered;
 use function abort;
 
 class RegisterController extends CoreController
@@ -63,13 +63,16 @@ class RegisterController extends CoreController
             'active' => config('user.activate_user_on_registration') ? 1 : 0,
         ]);
 
-        if (!count($instance->errors())) {
-            sendNotification($instance->email, new UserWasRegistered($instance));
-
-            flash('Your account has been created successfully!', 'success');
-        }
-
         return $instance;
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
     }
 
     /**

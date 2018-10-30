@@ -12,7 +12,11 @@ Route::group(['middleware' => 'XSSProtection'], function () {
     });
 
     Route::group([
-        'prefix' => 'crud'
+        'prefix' => 'crud',
+        'middleware' => [
+            'auth.very_basic',
+            'throttle:50'
+        ]
     ], function () {
         Route::post('/store', 'CrudController@store')->name('crud.store');
         Route::get('/publish', 'CrudController@publish')->name('crud.publish');

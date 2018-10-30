@@ -15,11 +15,13 @@ class ResetPasswordController extends CoreController
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     public function __construct()
     {
         $this->middleware('guest');
+
+        $this->redirectTo = config('user.redirect_route_after_register', '/');
         
         parent::__construct();
     }

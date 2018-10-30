@@ -6,7 +6,7 @@
             <div class="col-md-6 offset-md-3">
 
                 @section('mycard.component_card_content')
-                    {!! Former::open()->action(route('password.request'))->method('post')->class('validate') !!}
+                    {!! Former::open()->action(route('password.update'))->method('post')->class('validate') !!}
                     {!! Former::hidden('token')->value($token) !!}
 
                     {!!

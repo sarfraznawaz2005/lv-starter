@@ -13,13 +13,15 @@ use Modules\Core\Models\CoreModel;
 use Modules\Core\Traits\Model\Purgeable;
 use Modules\Task\Models\Task;
 use Modules\User\Notifications\PasswordWasReset;
+use Modules\User\Notifications\UserWasRegistered;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class User extends CoreModel implements AuthenticatableContract, CanResetPasswordContract, AuthorizableContract
+class User extends CoreModel implements AuthenticatableContract, CanResetPasswordContract, AuthorizableContract, MustVerifyEmail
 {
-    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
+    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmailTrait;
     use Notifiable;
     use HasRoles;
 
@@ -139,6 +141,24 @@ class User extends CoreModel implements AuthenticatableContract, CanResetPasswor
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new PasswordWasReset($token));
+    }
+
+    /**
+     * Mark the given user's email as verified.
+     *
+     * @return bool
+     */
+    public function markEmailAsVerified(): bool
+    {
+        $result = $this->forceFill([
+            'email_verified_at' => $this->freshTimestamp(),
+        ])->save();
+
+        if ($result) {
+            flash('Your account has been verified successfully!', 'success');
+        }
+
+        return $result;
     }
 
     ###################################################################
