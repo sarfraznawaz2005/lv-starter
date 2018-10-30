@@ -6,6 +6,7 @@ use Balping\HashSlug\HasHashSlug;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Notifications\Notifiable;
 use Modules\Core\Models\CoreModel;
@@ -13,14 +14,14 @@ use Modules\Core\Traits\Model\Purgeable;
 use Modules\Task\Models\Task;
 use Modules\User\Notifications\PasswordWasReset;
 use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
-class User extends CoreModel implements AuthenticatableContract, CanResetPasswordContract
+class User extends CoreModel implements AuthenticatableContract, CanResetPasswordContract, AuthorizableContract
 {
-    use Authenticatable;
-    use CanResetPassword;
-    use HasRoles;
+    use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmail;
     use Notifiable;
+    use HasRoles;
 
     // automatic fake model id
     use HasHashSlug;
@@ -45,9 +46,7 @@ class User extends CoreModel implements AuthenticatableContract, CanResetPasswor
         'name',
         'email',
         'password',
-        'confirmation_code',
         'active',
-        'confirmed',
     ];
 
     protected $guarded = ['id'];

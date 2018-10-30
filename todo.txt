@@ -1,8 +1,6 @@
 php artisan vendor:publish --all
 
-see what's new in 5.7 and make all those changes accordingly
 telescope / remove existing clockwork, etc
-built-in MustVerifyEmail
 
 NOT INSTALLED:
 -------------------------

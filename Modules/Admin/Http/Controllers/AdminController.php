@@ -50,11 +50,6 @@ class AdminController extends CoreController
         // also check if user is active
         $credentials['active'] = 1;
 
-        // also check if user is confirmed
-        if (config('user.account_email_verification')) {
-            $credentials['confirmed'] = 1;
-        }
-
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
 
             // success

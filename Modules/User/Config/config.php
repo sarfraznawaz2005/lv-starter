@@ -5,8 +5,6 @@ return [
 
     # allow user registration
     'allow_user_registration' => true,
-    # whether user should verify their account via email first
-    'account_email_verification' => true,
     # whether user should automatically be activated after registration
     'activate_user_on_registration' => true,
     # show/hide remember me checkbox on login page

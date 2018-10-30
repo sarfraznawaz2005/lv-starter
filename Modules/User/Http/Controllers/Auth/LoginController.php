@@ -3,10 +3,8 @@
 namespace Modules\User\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Modules\Core\Http\Controllers\CoreController;
 use Illuminate\Http\Request;
-use Modules\User\Models\User;
-use Modules\User\Notifications\VerifyRegister;
+use Modules\Core\Http\Controllers\CoreController;
 use Sarfraznawaz2005\VisitLog\Facades\VisitLog;
 
 class LoginController extends CoreController
@@ -51,33 +49,8 @@ class LoginController extends CoreController
 
         $credentials = $this->credentials($request);
 
-        // check if user is registered but not verified, in this case re-send
-        // them verification email
-        if (config('user.account_email_verification')) {
-            $user = User::where('email', $credentials['email'])->where('confirmed', 0)->first();
-
-            if ($user) {
-                // re-create confirmation code if it is empty currently
-                if (!$user->confirmation_code) {
-                    $user->confirmation_code = str_random(30);
-                    $user->save();
-                }
-
-                // send verification email
-                sendNotification($user->email, new VerifyRegister($user));
-
-                flash('Please check your email to verify your account.', 'info');
-                return redirect()->back();
-            }
-        }
-
         // also check if user is active
         $credentials['active'] = 1;
-
-        // also check if user is confirmed
-        if (config('user.account_email_verification')) {
-            $credentials['confirmed'] = 1;
-        }
 
         if ($this->guard()->attempt($credentials, $request->has('remember'))) {
             // logged in successfully

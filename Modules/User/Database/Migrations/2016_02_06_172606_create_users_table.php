@@ -18,9 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('admin')->default(false);
-            $table->boolean('confirmed')->default(0);
-            $table->string('confirmation_code')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('admin')->default(0);
             $table->boolean('active')->default(1);
 
             $table->rememberToken();
@@ -35,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users');
+        Schema::dropIfExists('users');
     }
 }
