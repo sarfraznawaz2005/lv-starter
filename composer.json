@@ -28,6 +28,7 @@
         "mews/purifier": "^2.1",
         "nwidart/laravel-modules": "^4.0",
         "olssonm/l5-very-basic-auth": "^5.3",
+        "qcod/laravel-imageup": "^1.0",
         "sarfraznawaz2005/applog": "^1.0",
         "sarfraznawaz2005/noty": "^1.0",
         "sarfraznawaz2005/visitlog": "^1.1",

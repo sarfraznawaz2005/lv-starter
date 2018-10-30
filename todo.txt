@@ -1,9 +1,3 @@
 php artisan vendor:publish --all
 
 telescope / remove existing clockwork, etc
-
-NOT INSTALLED:
--------------------------
-uxweb/sweet-alert
-itsgoingd/clockwork => telescope
-kingofcode/laravel-uploadable => https://github.com/qcod/laravel-imageup

@@ -7,6 +7,7 @@ use Modules\Core\Models\CoreModel;
 use Modules\Core\Traits\Model\Cacheable\Cacheable;
 use Modules\Core\Traits\Model\Playable;
 use Modules\User\Models\User;
+use QCod\ImageUp\HasImageUploads;
 
 class Task extends CoreModel
 {
@@ -18,6 +19,9 @@ class Task extends CoreModel
 
     // cache queries on the model
     use Cacheable;
+
+    // to upload images
+    use HasImageUploads;
 
     protected $fillable = [
         'user_id',
@@ -31,11 +35,15 @@ class Task extends CoreModel
     ];
 
     // Array of uploadable images. These fields need to be existent in your database table
-    protected $uploadableImages = [
-        'file',
+    // https://github.com/qcod/laravel-imageup
+    protected static $imageFields = [
+        'file' => [
+            'path' => 'task',
+            'rules' => 'image|max:2000',
+            'width' => 250,
+            'height' => 150,
+        ]
     ];
-
-    public $uploadFolderName = 'tasks';
 
 
     ###################################################################
