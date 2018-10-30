@@ -2,7 +2,7 @@
 
 namespace Modules\Core\Providers;
 
-use Bepsvpt\SecureHeaders\SecureHeadersServiceProvider;
+use Bepsvpt\SecureHeaders\SecureHeadersMiddleware;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Routing\Router;
@@ -67,7 +67,7 @@ class CoreServiceProvider extends ServiceProvider
             $kernel->pushMiddleware(HttpsProtocol::class);
 
             // setup secure headers
-            $kernel->pushMiddleware(SecureHeadersServiceProvider::class);
+            $kernel->pushMiddleware(SecureHeadersMiddleware::class);
 
             // disable query log
             queryLog(false);

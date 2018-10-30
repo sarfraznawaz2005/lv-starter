@@ -6,7 +6,7 @@
             'body'       => $message['message']
         ])
     @else
-        <div class="alert
+        <div class="animated shake alert
                     alert-{{ $message['level'] }}
                     {{ $message['important'] ? 'alert-important' : '' }}"
                     role="alert"
