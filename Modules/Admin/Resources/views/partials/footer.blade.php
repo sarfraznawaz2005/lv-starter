@@ -14,8 +14,6 @@
 
 @stack('scripts')
 
-@include('sweet::alert')
-
 @if (config('core.settings.enable_socket'))
     @include('core::shared.socket')
 @endif
