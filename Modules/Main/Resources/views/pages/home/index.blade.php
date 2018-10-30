@@ -10,11 +10,11 @@
             Welcome to Laravel Starter!
         </p>
         <p>
-            @if (Auth::guest())
+            @guest
                 <a class="btn btn-lg btn-success btn-raised" href="{{ url('/user/register') }}" role="button">
                     <i class="fa fa-paper-plane"></i> Get Started!
                 </a>
-            @endif
+            @endguest
         </p>
     </div>
 

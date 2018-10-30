@@ -26,11 +26,13 @@ class CreateTasksTable extends Migration
             $table->timestamps();
         });
 
+        /*
         Schema::table('tasks', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('no action');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('no action');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('no action');
         });
+        */
     }
 
     /**
