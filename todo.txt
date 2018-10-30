@@ -1,3 +1,1 @@
 php artisan vendor:publish --all
-
-telescope / remove existing clockwork, etc
