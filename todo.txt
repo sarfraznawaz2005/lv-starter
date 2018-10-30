@@ -1,16 +1,13 @@
 php artisan vendor:publish --all
 
+https://github.com/BePsvPT/secure-headers (add middleware in coreserviceprovider)
 assets no errors on crud/admin and main consoles
 remove HomeController, etc and compare all files
-telescope / remove existing clockwork, etc
 vendor/resources compare
 terminal branding
-built-in MustVerifyEmail
-
-https://github.com/BePsvPT/secure-headers (add middleware in coreserviceprovider)
-
 see what's new in 5.7 and make all those changes accordingly
-
+telescope / remove existing clockwork, etc
+built-in MustVerifyEmail
 
 NOT INSTALLED:
 -------------------------

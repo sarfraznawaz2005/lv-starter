@@ -1,22 +1,72 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
 window.Vue = require('vue');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import VueRouter from 'vue-router'
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.use(VueRouter);
 
-const app = new Vue({
-    el: '#app'
+/////////////////////////////////////////////////////////////////////////////
+// VueJS Components
+/////////////////////////////////////////////////////////////////////////////
+Vue.component('tasks-component', require('./components/task/view.vue'));
+/////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////
+// VueRouter Routes
+/////////////////////////////////////////////////////////////////////////////
+
+const router = new VueRouter({
+    mode: 'history',
+    routes: [
+        {
+            path: '/tasks_list',
+            name: 'tasks_list',
+            component: require('./components/task/list.vue')
+        },
+        {
+            path: '/tasks_create',
+            name: 'tasks_create',
+            component: require('./components/task/create.vue')
+        },
+        {
+            path: '/tasks_edit',
+            name: 'tasks_edit',
+            component: require('./components/task/edit.vue')
+        },
+        //{path: '/', redirect: '/task_list'},
+    ]
 });
+
+/////////////////////////////////////////////////////////////////////////////
+
+window.vm = new Vue({
+    el: '#app',
+    router
+});
+
+/////////////////////////////////////////////////////////////////////////////
+// CUSTOM LIBRARY IMPORTS
+/////////////////////////////////////////////////////////////////////////////
+
+window.swal = require('sweetalert2');
+window.isMobile = require('ismobilejs');
+window.Noty = require('noty');
+window.mojs = require('mo-js');
+
+// DataTables
+require('datatables.net');
+require('datatables.net-bs4');
+require('datatables.net-responsive');
+require('datatables.net-responsive-bs4');
+
+require('datatables.net-buttons');
+require('datatables.net-buttons-bs4');
+require('datatables.net-buttons/js/buttons.colVis.js');
+require('datatables.net-buttons/js/buttons.html5.js');
+require('datatables.net-buttons/js/buttons.flash.js');
+require('datatables.net-buttons/js/buttons.print.js');
+
+require('select2');
+//require('summernote');
+//require('bootstrap-validator');
