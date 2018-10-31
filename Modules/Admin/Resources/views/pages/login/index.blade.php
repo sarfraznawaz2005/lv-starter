@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <meta name="description" content="{{appName()}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="Sarfraz Ahmed (sarfraznawaz2005@gmail.com)">
 
@@ -21,10 +20,6 @@
     ],
     '/storage/cache/css/')
     !!}
-
-    <script>
-        window.Laravel = <?=json_encode(['csrfToken' => csrf_token()]); ?>
-    </script>
 </head>
 
 <body class="animated fadeIn">
@@ -37,9 +32,9 @@
     <div class="logo">
         <h1>{{appName()}}</h1>
     </div>
-    
+
     @include('flash::message')
-    @include('core::shared.errors')    
+    @include('core::shared.errors')
 
     <div class="login-box">
 
