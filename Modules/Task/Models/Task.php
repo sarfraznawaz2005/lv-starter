@@ -81,10 +81,7 @@ class Task extends CoreModel
     # ACCESSROS START
     ###################################################################
 
-    public function getCompletedAttribute($value)
-    {
-        return $value == 1 ? 'Yes' : 'No';
-    }
+    //
 
     ###################################################################
     # ACCESSROS END

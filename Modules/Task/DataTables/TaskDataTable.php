@@ -2,6 +2,7 @@
 
 namespace Modules\Task\DataTables;
 
+use Modules\Task\Enums\TaskCompletedEnum;
 use Modules\Task\Models\Task;
 use function strip_tags;
 use function substr;
@@ -23,20 +24,20 @@ class TaskDataTable extends DataTable
             ->editColumn('action', function ($object) {
                 $actions = '';
 
-                $actions .= $this->buttonMarkComplete(route('task.complete', [$object]), $object->completed === 'Yes');
+                $actions .= $this->buttonMarkComplete(route('task.complete', [$object]), $object->completed);
                 $actions .= listingEditButton(route('task.edit', [$object]));
                 $actions .= listingDeleteButton(route('task.destroy', [$object]), 'Task');
 
                 return tdCenter($actions);
             })
             ->editColumn('completed', function ($object) {
-                $text = $object->completed;
+                $text = TaskCompletedEnum::getDescription($object->completed);
                 $type = $text === 'Yes' ? 'success' : 'danger';
 
                 return tdLabel($type, $text);
             })
             ->editColumn('description', function ($object) {
-               return substr(strip_tags($object->description), 0, 80);
+                return substr(strip_tags($object->description), 0, 80);
             })
             ->setRowClass(function ($object) {
                 //return $object->completed === 'Yes' ? 'table-success' : '';

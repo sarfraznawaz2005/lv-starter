@@ -13,6 +13,7 @@
         "anahkiasen/former": "^4.1",
         "arrilot/laravel-widgets": "^3.12",
         "balping/laravel-hashslug": "^2.1",
+        "bensampo/laravel-enum": "^1.16",
         "bepsvpt/secure-headers": "^5.3",
         "davejamesmiller/laravel-breadcrumbs": "^5.1",
         "doctrine/dbal": "^2.8",

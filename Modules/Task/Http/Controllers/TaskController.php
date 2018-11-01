@@ -29,7 +29,7 @@ class TaskController extends CoreController
     // update task "complete" status
     public function complete(Task $task)
     {
-        $task->completed = $task->completed === 'No' ? 1 : 0;
+        $task->completed = !$task->completed;
 
         return $this->updateRecord($task);
     }
