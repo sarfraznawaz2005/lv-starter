@@ -6,6 +6,9 @@
  * Time: 3:36 PM
  */
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Modules\Core\Recipients\DynamicRecipient;
 
 function appName()
@@ -26,9 +29,9 @@ function modulePath($moduleName)
 function queryLog($enable = true)
 {
     if ($enable) {
-        \DB::connection()->enableQueryLog();
+        DB::connection()->enableQueryLog();
     } else {
-        \DB::connection()->disableQueryLog();
+        DB::connection()->disableQueryLog();
     }
 }
 
@@ -38,7 +41,7 @@ function queryLog($enable = true)
  */
 function getLastQuery()
 {
-    $query = \DB::getQueryLog();
+    $query = DB::getQueryLog();
     $lastQuery = end($query);
 
     return $lastQuery;
@@ -57,16 +60,6 @@ function out($message, $log = true)
     if ($log) {
         Log::info($message);
     }
-}
-
-/**
- * Shows general info message via SweetAlert
- *
- * @param $message
- */
-function showAlert($message)
-{
-    alert($message)->persistent('Close');
 }
 
 /**
@@ -302,11 +295,7 @@ function getImageTakenDate($imagePath)
 {
     if (file_exists($imagePath)) {
         @$exif = exif_read_data($imagePath);
-
-        if (isset($exif['DateTimeOriginal'])) {
-            return $exif['DateTimeOriginal'];
-        }
     }
 
-    return null;
+    return $exif['DateTimeOriginal'] ?? null;
 }

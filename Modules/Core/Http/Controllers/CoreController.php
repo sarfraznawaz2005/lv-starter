@@ -22,8 +22,8 @@ class CoreController extends BaseController
     use Crudable;
 
     const ADD_MESSAGE = 'Added Successfully!';
-    const DELETE_MESSAGE = 'Deleted Successfully!';
     const UPDATE_MESSAGE = 'Updated Successfully!';
+    const DELETE_MESSAGE = 'Deleted Successfully!';
 
     // any common stuff that will be available in whole app
     public function __construct()

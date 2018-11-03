@@ -197,105 +197,6 @@ SELECT;
 }
 
 /**
- * Converts model data into html table
- *
- * @param $model
- * @param array $fields
- * @param bool $horizontal
- * @param array $options $tableAttributes, $trAttributes, $tdAttributes
- * @return string
- */
-function table($model, array $fields, $horizontal = false, array $options = [])
-{
-    $table = '';
-    $nl = "\n";
-    $tableAttributes = isset($options['tableAttributes']) ? $options['tableAttributes'] : '';
-    $trAttributes = isset($options['trAttributes']) ? $options['trAttributes'] : '';
-    $tdAttributes = isset($options['tdAttributes']) ? $options['tdAttributes'] : '';
-
-    $data = $model->all();
-
-    $table .= "$nl<table $tableAttributes class='table table-striped table-bordered table-hover dt-responsive'>";
-
-    // cause horizintally usually one record is shown
-    if ($horizontal) {
-        $data = $model->first();
-
-        foreach ($fields as $key => $title) {
-            $table .= "$nl<tr>";
-            $value = $data->$key;
-            $table .= "$nl<td $tdAttributes><strong>$title</strong></td>";
-            $table .= "$nl<td $tdAttributes>$value</td>";
-            $table .= "$nl</tr>";
-        }
-
-    } else {
-        $table .= "$nl<thead>";
-        $table .= "$nl<tr>";
-
-        foreach (array_values($fields) as $title) {
-            $table .= "$nl<th>$title</th>";
-        }
-
-        $table .= "$nl</tr>";
-        $table .= "$nl</thead>";
-        $table .= "$nl<tbody>";
-
-        foreach ($data as $row) {
-            $table .= "$nl<tr $trAttributes>";
-
-            foreach (array_keys($fields) as $field) {
-                $value = $row->$field;
-                $table .= "$nl<td $tdAttributes>$value</td>";
-            }
-
-            $table .= "$nl</tr>";
-        }
-    }
-
-    $table .= "$nl</tbody>";
-    $table .= "$nl</table>";
-
-    return $table;
-}
-
-/**
- * Returns html table row
- *
- * Usage: tr($model->fieldName);
- *
- * @param $value
- * @param string $title
- * @param bool $strong
- * @param string $default
- * @return string
- */
-function tr($value, $title = '', $strong = false, $default = '')
-{
-
-    if (!trim($value)) {
-        $value = $default;
-    }
-
-    $tr = '<tr>';
-
-    if (!$title) {
-        $title = ucwords(str_replace(['_', '-'], ['', ''], $value));
-    }
-
-    if ($strong) {
-        $tr .= '<td><strong>' . $title . '</strong></td>';
-    } else {
-        $tr .= '<td>' . $title . '</td>';
-    }
-
-    $tr .= '<td>' . $value . '</td>';
-    $tr .= '</tr>';
-
-    return $tr;
-}
-
-/**
  * create BTS popover with text cut off
  *
  * @param $text
@@ -358,48 +259,11 @@ HTML;
     return $html;
 }
 
-function tdModalPicture($path, $title = 'Details')
-{
-    $id = str_random() . time() . uniqid() . substr(str_slug($path), 0, 10);
-
-    $html = <<< HTML
-<div id="mod_dtls_pic_$id" class="modal fade move_modal" tabindex="-1" role="dialog" style="z-index:9999999999;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header modal-header-success">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-
-                <h4 class="modal-title">
-                    $title
-                </h4>
-            </div>
-
-            <div class="modal-body" style="width:100%; white-space: normal; text-align: center;">
-                <img src="$path" class="img-thumbnail" alt="avatar">
-            </div>
-
-            <div class="modal-footer" style="padding: 7px 10px 5px 10px;">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<a data-toggle="modal" data-target="#mod_dtls_pic_$id" href="javascript:void(0);" style="text-decoration: none;">
-    <b class="btn btn-primary fa fa-camera"></b>
-</a>
-
-HTML;
-
-    return $html;
-}
-
 /**
  * Centers content on dataTable.
  *
  * @param $data
+ * @param string $width
  * @return string
  */
 function tdCenter($data, $width = 'auto')
@@ -453,7 +317,7 @@ function dropdown($data, $appendEmptyOption = false)
     return $menus;
 }
 
-function substr_text_only($string, $limit, $end = '...')
+function substrTextOnly($string, $limit, $end = '...')
 {
     $with_html_count = strlen($string);
     $without_html_count = strlen(strip_tags($string));

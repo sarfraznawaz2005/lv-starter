@@ -150,10 +150,9 @@ if (!function_exists('money_format')) {
 
 /**
  * @param $number
- * @param string $symbol
  * @return string
  */
-function moneyFormat($number, $symbol = '$')
+function moneyFormat($number)
 {
     if (!$number) {
         return '$0.00';
@@ -206,7 +205,7 @@ function getRandomColor()
  * @param $input
  * @return string
  */
-function base64_url_encode($input)
+function base64UrlEncode($input)
 {
     return strtr(base64_encode($input), '+/=', '-_,');
 }
@@ -215,7 +214,7 @@ function base64_url_encode($input)
  * @param $input
  * @return string
  */
-function base64_url_decode($input)
+function base64UrlDecode($input)
 {
     return base64_decode(strtr($input, '-_,', '+/='));
 }
