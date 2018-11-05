@@ -12,7 +12,7 @@ Laravel Starter project with useful laravel packages needed for most apps.
 - Run `php artisan module:publish`
 - Run `php artisan module:publish-migration`
 - Run `php artisan storage:link`
-- Update `.env` file with database details
+- Update `APP_NAME`, `APP_URL` and database details in `.env` file
 - Run `php artisan migrate`
 - Run `npm run dev`
 - You are done.
