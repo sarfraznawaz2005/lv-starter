@@ -46,13 +46,15 @@ window.vm = new Vue({
 });
 
 /////////////////////////////////////////////////////////////////////////////
-// CUSTOM LIBRARY IMPORTS
+// 3rd PARTY LIBRARY IMPORTS
 /////////////////////////////////////////////////////////////////////////////
 
 window.swal = require('sweetalert2');
 window.isMobile = require('ismobilejs');
 window.Noty = require('noty');
 window.mojs = require('mo-js');
+window.pulsate = require('my-jquery-pulsate');
+//window.disabler = require('disabler'); // to be fixed
 
 // DataTables
 require('datatables.net');

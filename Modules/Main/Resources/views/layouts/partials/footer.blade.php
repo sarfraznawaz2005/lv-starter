@@ -11,7 +11,6 @@
 {!! Packer::js([
 '/modules/core/js/plugins/datatables/fnFilterOnReturn.js',
 '/modules/core/js/plugins/datatables/jquery.dataTables.columnFilter.js',
-'/modules/core/js/plugins/jquery.pulsate.min.js',
 '/modules/core/js/plugins/disabler.min.js',
 '/modules/core/js/core.js',
 '/modules/main/js/custom.js',
