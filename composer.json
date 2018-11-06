@@ -19,7 +19,6 @@
         "doctrine/dbal": "^2.8",
         "dompdf/dompdf": "^0.8.2",
         "eusonlito/laravel-meta": "^3.1",
-        "eusonlito/laravel-packer": "^2.1",
         "fideloper/proxy": "^4.0",
         "garygreen/pretty-routes": "^1.0",
         "jenssegers/agent": "^2.6",
