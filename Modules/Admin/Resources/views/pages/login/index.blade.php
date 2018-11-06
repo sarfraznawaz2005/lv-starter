@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{mix('/css/app.css')}}">
     <link rel="stylesheet" href="/modules/admin/css/main.css">
     <link rel="stylesheet" href="/modules/admin/css/custom.css">
-    <link rel="stylesheet" href="/modules/core/css/animate.css">
 
 </head>
 
