@@ -11,15 +11,11 @@
 
     <title>{{appName()}}</title>
 
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="{{mix('/css/app.css')}}">
+    <link rel="stylesheet" href="/modules/admin/css/main.css">
+    <link rel="stylesheet" href="/modules/admin/css/custom.css">
+    <link rel="stylesheet" href="/modules/core/css/animate.css">
 
-    {!! Packer::css([
-    '/modules/admin/css/main.css',
-    '/modules/admin/css/custom.css',
-    '/modules/core/css/animate.css',
-    ],
-    '/storage/cache/css/')
-    !!}
 </head>
 
 <body class="animated fadeIn">
