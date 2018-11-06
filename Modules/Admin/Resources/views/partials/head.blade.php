@@ -9,15 +9,11 @@
 
     <title>{{Meta::get('title') . ' :: Admin Panel'}}</title>
 
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-
-    {!! Packer::css([
-    '/modules/admin/css/main.css',
-    '/modules/core/css/loader.css',
-    '/modules/admin/css/custom.css',
-    ],
-    '/storage/cache/css/')
-    !!}
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{mix('/css/app.css')}}">
+    <link rel="stylesheet" href="/modules/admin/css/main.css">
+    <link rel="stylesheet" href="/modules/admin/css/custom.css">
 
     @stack('styles')
+
 </head>

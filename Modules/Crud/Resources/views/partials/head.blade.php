@@ -11,14 +11,10 @@
 
     <link rel="shortcut icon" href="/tools.ico">
 
-    {!! Packer::css([
-    '/modules/crud/css/bootstrap/css/theme.min.css',
-    '/modules/crud/css/bootstrap/css/custom.css',
-    '/modules/core/css/loader.css',
-    '/modules/crud/css/custom.css',
-    ],
-    '/storage/cache/css/')
-    !!}
+    <link rel="stylesheet" href="/modules/crud/css/bootstrap/css/theme.min.css">
+    <link rel="stylesheet" href="/modules/crud/css/bootstrap/css/custom.css">
+    <link rel="stylesheet" href="/modules/core/css/loader.css">
+    <link rel="stylesheet" href="/modules/crud/css/custom.css">
 
     @stack('styles')
 </head>

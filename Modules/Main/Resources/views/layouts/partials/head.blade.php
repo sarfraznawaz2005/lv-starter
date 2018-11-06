@@ -22,14 +22,9 @@
 
     <link rel="shortcut icon" href="/favicon.ico">
 
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-
-    {!! Packer::css([
-    '/modules/core/css/loader.css',
-    '/modules/main/css/custom.css',
-    ],
-    '/storage/cache/css/')
-    !!}
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{mix('/css/app.css')}}">
+    <link rel="stylesheet" href="/modules/main/css/custom.css">
 
     @stack('styles')
 </head>

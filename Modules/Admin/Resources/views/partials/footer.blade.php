@@ -1,15 +1,6 @@
 <!-- Scripts -->
-<script src="{{asset('js/app.js')}}"></script>
-
-{!! Packer::js([
-'/modules/core/js/plugins/datatables/fnFilterOnReturn.js',
-'/modules/core/js/plugins/datatables/jquery.dataTables.columnFilter.js',
-'/modules/core/js/plugins/disabler.min.js',
-'/modules/core/js/core.js',
-'/modules/admin/js/custom.js',
-],
-'/storage/cache/js/')
-!!}
+<script src="{{mix('/js/app.js')}}"></script>
+<script src="/modules/admin/js/custom.js"></script>
 
 @stack('scripts')
 
