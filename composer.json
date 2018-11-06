@@ -15,6 +15,7 @@
         "balping/laravel-hashslug": "^2.1",
         "bensampo/laravel-enum": "^1.16",
         "bepsvpt/secure-headers": "^5.3",
+        "beyondcode/laravel-self-diagnosis": "^1.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.1",
         "doctrine/dbal": "^2.8",
         "dompdf/dompdf": "^0.8.2",
