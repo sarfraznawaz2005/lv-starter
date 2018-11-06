@@ -11,7 +11,7 @@
   "aliases": {},
   "files": [
     "start.php",
-    "Http/breadcrumbs.php"
+    "Routes/breadcrumbs.php"
   ],
   "requires": [
     "Core"

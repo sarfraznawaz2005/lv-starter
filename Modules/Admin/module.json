@@ -10,7 +10,7 @@
     ],
     "aliases": [],
     "files": [
-        "Http\/breadcrumbs.php"
+        "Routes/breadcrumbs.php"
     ],
     "requires": [
         "Core"
