@@ -5,7 +5,6 @@ namespace Modules\User\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Modules\Core\Http\Controllers\CoreController;
-use Sarfraznawaz2005\VisitLog\Facades\VisitLog;
 
 class LoginController extends CoreController
 {
@@ -56,8 +55,6 @@ class LoginController extends CoreController
             // logged in successfully
 
             noty('Welcome ' . user()->name);
-
-            VisitLog::save();
 
             return $this->sendLoginResponse($request);
         }

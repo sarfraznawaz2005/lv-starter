@@ -18,11 +18,9 @@
         "beyondcode/laravel-self-diagnosis": "^1.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.1",
         "doctrine/dbal": "^2.8",
-        "dompdf/dompdf": "^0.8.2",
         "eusonlito/laravel-meta": "^3.1",
         "fideloper/proxy": "^4.0",
         "garygreen/pretty-routes": "^1.0",
-        "jenssegers/agent": "^2.6",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
@@ -32,8 +30,6 @@
         "qcod/laravel-imageup": "^1.0",
         "sarfraznawaz2005/applog": "^1.0",
         "sarfraznawaz2005/noty": "^1.0",
-        "sarfraznawaz2005/visitlog": "^1.1",
-        "spatie/laravel-permission": "^2.23",
         "vakata/websocket": "^1.0",
         "watson/active": "^3.0",
         "watson/validating": "^3.1",
@@ -46,14 +42,12 @@
         "beyondcode/laravel-query-detector": "^0.6.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
-        "imanghafoori/laravel-anypass": "^1.0",
         "laravel/telescope": "^0.1.5",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0",
         "recca0120/terminal": "^1.6",
-        "roave/security-advisories": "dev-master",
-        "themsaid/laravel-mail-preview": "^2.0"
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "classmap": [

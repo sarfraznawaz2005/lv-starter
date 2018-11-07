@@ -15,7 +15,6 @@ use Illuminate\Notifications\Notifiable;
 use Modules\Core\Models\CoreModel;
 use Modules\Core\Traits\Model\Purgeable;
 use Modules\Task\Models\Task;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends CoreModel implements
     AuthenticatableContract,
@@ -25,7 +24,6 @@ class User extends CoreModel implements
 {
     use Authenticatable, Authorizable, CanResetPassword, MustVerifyEmailTrait;
     use Notifiable;
-    use HasRoles;
 
     // automatic fake model id
     use HasHashSlug;
