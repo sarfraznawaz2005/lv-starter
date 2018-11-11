@@ -46,7 +46,7 @@ return [
      * This is a time in miliseconds
      * if you use 0 or a negative number it will never be removed.
      */
-    'popup_timeout' => 0,
+    'popup_timeout' => 10000,
 
     /**
      * --------------------------------------------------------------------------
