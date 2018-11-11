@@ -29,6 +29,7 @@
         "olssonm/l5-very-basic-auth": "^5.3",
         "qcod/laravel-imageup": "^1.0",
         "sarfraznawaz2005/applog": "^1.0",
+        "sarfraznawaz2005/emailwatch": "^1.0",
         "sarfraznawaz2005/noty": "^1.0",
         "themsaid/laravel-mail-preview": "^2.0",
         "vakata/websocket": "^1.0",

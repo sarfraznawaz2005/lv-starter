@@ -25,7 +25,7 @@ return [
      *
      */
 
-    'maximum_lifetime' => 60,
+    'maximum_lifetime' => 300,
 
     /**
      * --------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return [
      * This is a time in miliseconds
      * if you use 0 or a negative number it will never be removed.
      */
-    'popup_timeout' => 8000,
+    'popup_timeout' => 0,
 
     /**
      * --------------------------------------------------------------------------
