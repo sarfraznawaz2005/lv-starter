@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Console\Cleanup;
+use Modules\Core\Console\RouteList;
 use Modules\Core\Console\SocketServer;
 use Modules\Core\Console\VendorCleanup;
 use Modules\Core\Http\Middleware\HttpsProtocol;
@@ -56,6 +57,7 @@ class CoreServiceProvider extends ServiceProvider
             Cleanup::class,
             VendorCleanup::class,
             SocketServer::class,
+            RouteList::class,
         ]);
 
         #################################################
@@ -71,9 +73,6 @@ class CoreServiceProvider extends ServiceProvider
 
             // disable query log
             queryLog(false);
-
-
-            config(['pretty-routes.url' => '']);
         }
     }
 
