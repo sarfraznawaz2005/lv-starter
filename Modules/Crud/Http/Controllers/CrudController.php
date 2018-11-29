@@ -63,7 +63,6 @@ class CrudController extends CoreController
         shell_exec($this->getArtisan() . 'cache:clear');
         shell_exec($this->getArtisan() . 'view:clear');
         shell_exec($this->getArtisan() . 'config:clear');
-        shell_exec($this->getArtisan() . 'optimize --force');
         shell_exec($this->getArtisan() . 'app:cleanup');
     }
 
