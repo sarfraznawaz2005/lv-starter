@@ -7,7 +7,10 @@ Route::group(['middleware' => 'XSSProtection'], function () {
         ### PUBLIC ROUTES START ###
         #===========================================================#
 
-        Auth::routes(['verify' => true]);
+        Auth::routes([
+            'verify' => config('user.user_verify_required'),
+            'reset' => config('user.enable_password_reset')
+        ]);
 
         ### PUBLIC ROUTES END ###
         #===========================================================#

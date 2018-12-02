@@ -3,8 +3,12 @@
 return [
     'name' => 'User',
 
-    # allow user registration
+    # allow user registration, if "false", users cannot register
     'allow_user_registration' => true,
+    # if "true", each registered user needs to verify account first
+    'user_verify_required' => true,
+    # if "false", users cannot reset their passwords
+    'enable_password_reset' => true,
     # whether user should automatically be activated after registration
     'activate_user_on_registration' => true,
     # show/hide remember me checkbox on login page

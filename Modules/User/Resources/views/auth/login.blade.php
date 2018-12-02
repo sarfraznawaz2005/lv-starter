@@ -45,11 +45,13 @@
                 @endsection
 
                 @section('mycard.component_card_footer')
-                    <div class="pull-left">
-                        <a href="{{ route('password.request') }}" class="text-blue">
-                            Forgot Password
-                        </a>
-                    </div>
+                    @if(config('user.enable_password_reset', true))
+                        <div class="pull-left">
+                            <a href="{{ route('password.request') }}" class="text-blue">
+                                Forgot Password
+                            </a>
+                        </div>
+                    @endif
                     <div class="pull-right">
                         <a href="{{ route('register') }}" class="text-blue">
                             Create Account
