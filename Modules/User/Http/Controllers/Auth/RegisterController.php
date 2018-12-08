@@ -27,7 +27,7 @@ class RegisterController extends CoreController
         $this->middleware('guest');
 
         $this->redirectTo = config('user.redirect_route_after_register', '/');
-        
+
         parent::__construct();
     }
 
@@ -91,7 +91,15 @@ class RegisterController extends CoreController
 
         event(new Registered($user = $this->create($request->all())));
 
-        $this->guard()->login($user);
+        if (config('user.login_user_after_registration')) {
+            $this->guard()->login($user);
+        }
+
+        if (config('user.user_verify_required')) {
+            flash('Please check your email to verify your account.', 'success');
+        } else {
+            flash('Your account has been created successfully.', 'success');
+        }
 
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

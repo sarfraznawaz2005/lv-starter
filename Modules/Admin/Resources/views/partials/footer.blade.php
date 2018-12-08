@@ -6,7 +6,4 @@
 
 @include('noty::view')
 
-@if (config('core.settings.enable_socket'))
-    @include('core::shared.socket')
-@endif
 

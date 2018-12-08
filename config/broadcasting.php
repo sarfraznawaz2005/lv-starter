@@ -37,7 +37,10 @@ return [
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
                 'cluster' => env('PUSHER_APP_CLUSTER'),
-                'encrypted' => true,
+                'encrypted' => env('MIX_PUSHER_ENCRYPTED'),
+                'host' => env('MIX_SOCKET_HOST'),
+                'port' => env('MIX_SOCKET_PORT'),
+                'scheme' => 'http'
             ],
         ],
 

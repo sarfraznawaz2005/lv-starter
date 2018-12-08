@@ -13,6 +13,8 @@ return [
     'activate_user_on_registration' => true,
     # show/hide remember me checkbox on login page
     'remember_me_checkbox' => true,
+    # login user after registration
+    'login_user_after_registration' => false,
     # route to redirect to after login
     'redirect_route_after_login' => '/home',
     # route to redirect to after registration

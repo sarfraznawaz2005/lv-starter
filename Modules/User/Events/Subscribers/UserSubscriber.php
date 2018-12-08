@@ -2,8 +2,9 @@
 
 namespace Modules\User\Events\Subscribers;
 
+use App\Events\UserWasLoggedIn;
+use App\Events\UserWasLoggedOut;
 use Illuminate\Support\Facades\Log;
-use Modules\Core\Facades\Socket;
 use Modules\User\Models\User;
 
 class UserSubscriber
@@ -25,20 +26,16 @@ class UserSubscriber
 
     public function onLogin($event)
     {
-        Socket::send([
-            'user_id' => user()->id,
-            'message' => $event->user->name . ' just logged in.'
-        ]);
-
         Log::info('User #' . $event->user->id . ' logged in.');
+
+        sendBroadcast(new UserWasLoggedIn());
     }
 
     public function onLogout($event)
     {
-        Socket::send([
-            'user_id' => user()->id,
-            'message' => $event->user->name . ' just logged out.'
-        ]);
+        Log::info('User #' . $event->user->id . ' logged out.');
+
+        sendBroadcast(new UserWasLoggedOut());
     }
 
     public function onRegister($event)

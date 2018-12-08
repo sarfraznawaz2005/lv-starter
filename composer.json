@@ -16,10 +16,12 @@
         "bensampo/laravel-enum": "^1.16",
         "bepsvpt/secure-headers": "^5.3",
         "beyondcode/laravel-self-diagnosis": "^1.0",
+        "beyondcode/laravel-websockets": "^1.0",
         "davejamesmiller/laravel-breadcrumbs": "^5.1",
         "doctrine/dbal": "^2.8",
         "eusonlito/laravel-meta": "^3.1",
         "fideloper/proxy": "^4.0",
+        "garygreen/pretty-routes": "^1.0",
         "itsgoingd/clockwork": "^3.0",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.7.*",
@@ -31,8 +33,6 @@
         "sarfraznawaz2005/applog": "^1.0",
         "sarfraznawaz2005/emailwatch": "^1.0",
         "sarfraznawaz2005/noty": "^1.0",
-        "themsaid/laravel-mail-preview": "^2.0",
-        "vakata/websocket": "^1.0",
         "watson/active": "^3.0",
         "watson/validating": "^3.1",
         "yajra/laravel-datatables-buttons": "^4.4",
@@ -76,11 +76,11 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
+            "@php artisan package:discover",
             "@php artisan vendor:cleanup"
         ]
     },

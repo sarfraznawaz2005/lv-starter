@@ -168,8 +168,19 @@ function title($title = '')
 
 function sendNotification($email, $object)
 {
-    $recipient = new DynamicRecipient($email);
-    $recipient->notify($object);
+    try {
+        $recipient = new DynamicRecipient($email);
+        $recipient->notify($object);
+    } catch (\Exception $e) {
+    }
+}
+
+function sendBroadcast($object)
+{
+    try {
+        broadcast($object)->toOthers();
+    } catch (\Exception $e) {
+    }
 }
 
 /**

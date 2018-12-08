@@ -15,6 +15,7 @@ use Illuminate\Notifications\Notifiable;
 use Modules\Core\Models\CoreModel;
 use Modules\Core\Traits\Model\Purgeable;
 use Modules\Task\Models\Task;
+use Modules\User\Notifications\VerifyEmail;
 
 class User extends CoreModel implements
     AuthenticatableContract,
@@ -128,7 +129,7 @@ class User extends CoreModel implements
 
     public function isSuperAdmin()
     {
-        return $this->admin == 1;
+        return $this->admin;
     }
 
     /**
@@ -147,6 +148,29 @@ class User extends CoreModel implements
         }
 
         return $result;
+    }
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        try {
+            $this->notify(new VerifyEmail);
+        } catch (\Exception $e) {
+        }
+    }
+
+    /**
+     * The channels the user receives notification broadcasts on.
+     *
+     * @return string
+     */
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'app.events';
     }
 
     ###################################################################
