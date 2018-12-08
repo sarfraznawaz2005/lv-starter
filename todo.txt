@@ -1,1 +1,3 @@
-php artisan vendor:publish --all
+- verify all configs and their options are used and that they are working fine
+- php artisan vendor:publish --all --force and adjust new settings by packages by comparing with git
+- compare changes in defaults in .env, composer.json, app.js, bootstrap.js, default framework config files, etc
