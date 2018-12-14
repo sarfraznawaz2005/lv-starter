@@ -33,9 +33,7 @@ class CoreCommand extends Command
 
             $executionTime = microtime(true) - $startTime;
 
-            $sign = app()->runningInConsole() ? '' : '&#10004; ';
-
-            $logMessage = $sign . $this->getName() . ' finished in ' . round($executionTime, 2);
+            $logMessage = $this->getName() . ' finished in ' . round($executionTime, 2);
 
             Log::info($logMessage);
         }
