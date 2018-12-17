@@ -410,25 +410,26 @@ return [
             ],
 
             'nonces' => [
-                // 'base64-encoded',
+                'base64-encoded',
             ],
 
             'schemes' => [
-                // 'https:',
+                //'http:',
+                //'https:',
             ],
 
-            'self' => false,
+            'self' => true,
 
-            'unsafe-inline' => false,
+            'unsafe-inline' => true,
 
-            'unsafe-eval' => false,
+            'unsafe-eval' => true,
 
             'strict-dynamic' => false,
 
             'unsafe-hashed-attributes' => false,
 
             // https://www.chromestatus.com/feature/5792234276388864
-            'report-sample' => true,
+            'report-sample' => false,
 
             'add-generated-nonce' => false,
         ],
@@ -452,9 +453,9 @@ return [
                 // 'https:',
             ],
 
-            'self' => false,
+            'self' => true,
 
-            'unsafe-inline' => false,
+            'unsafe-inline' => true,
 
             'report-sample' => true,
 
@@ -462,43 +463,43 @@ return [
         ],
 
         'img-src' => [
-            //
+            'self' => true,
         ],
 
         'default-src' => [
-            //
+            'self' => true,
         ],
 
         'base-uri' => [
-            //
+            'self' => true,
         ],
 
         'connect-src' => [
-            //
+            'self' => true,
         ],
 
         'font-src' => [
-            //
+            'self' => true,
         ],
 
         'form-action' => [
-            //
+            'self' => true,
         ],
 
         'frame-ancestors' => [
-            //
+            'self' => true,
         ],
 
         'frame-src' => [
-            //
+            'self' => true,
         ],
 
         'manifest-src' => [
-            //
+            'self' => true,
         ],
 
         'media-src' => [
-            //
+            'self' => true,
         ],
 
         'object-src' => [
