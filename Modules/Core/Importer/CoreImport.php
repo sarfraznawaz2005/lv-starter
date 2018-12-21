@@ -28,7 +28,7 @@
 //        }
 //    }
 
-namespace Modules\Core\Abstracts;
+namespace Modules\Core\Importer;
 
 use Illuminate\Support\Facades\DB;
 
