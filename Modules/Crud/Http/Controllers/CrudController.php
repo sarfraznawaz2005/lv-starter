@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use Modules\Core\Http\Controllers\CoreController;
 use Nwidart\Modules\Facades\Module;
 use Meta;
-use function title;
+use Illuminate\Support\Facades\Artisan;
 
 class CrudController extends CoreController
 {
@@ -40,30 +40,52 @@ class CrudController extends CoreController
         return $this->runCommand('module:make', $request->get('name'));
     }
 
-    public function publish()
+    public function publish(): \Illuminate\Http\RedirectResponse
     {
+        $output = '';
+
         File::cleanDirectory(base_path('public/modules'));
 
         File::cleanDirectory(base_path('database/migrations'));
         @file_put_contents(base_path('database/migrations') . '/.gitignore', '*');
 
-        shell_exec($this->getArtisan() . 'vendor:publish --all');
-        shell_exec($this->getArtisan() . 'module:publish-config --force');
-        shell_exec($this->getArtisan() . 'module:publish-migration');
-        shell_exec($this->getArtisan() . 'module:publish-translation');
+        Artisan::call('vendor:publish', ['--all' => true]);
+
+        $output .= Artisan::output();
+        Artisan::call('module:publish-config', ['--force' => true]);
+        $output .= Artisan::output();
+        Artisan::call('module:publish-migration');
+        $output .= Artisan::output();
+        Artisan::call('module:publish-translation');
+        $output .= Artisan::output();
+
+        Artisan::call('module:publish');
+        $output .= Artisan::output();
+
+        //echo $output;exit;
 
         $this->optimize();
 
-        return $this->runCommand('module:publish', null, 'Modules Published Successfully!');
+        flash('Modules Published Successfully!', 'success');
+        return redirect()->back();
     }
 
-    protected function optimize()
+    protected function optimize(): void
     {
-        shell_exec($this->getArtisan() . 'clear-compiled');
-        shell_exec($this->getArtisan() . 'cache:clear');
-        shell_exec($this->getArtisan() . 'view:clear');
-        shell_exec($this->getArtisan() . 'config:clear');
-        shell_exec($this->getArtisan() . 'app:cleanup');
+        $output = '';
+
+        Artisan::call('clear-compiled');
+        $output .= Artisan::output();
+        Artisan::call('cache:clear');
+        $output .= Artisan::output();
+        Artisan::call('view:clear');
+        $output .= Artisan::output();
+        Artisan::call('config:clear');
+        $output .= Artisan::output();
+        Artisan::call('app:cleanup');
+        $output .= Artisan::output();
+
+        //echo $output;exit;
     }
 
     public function toggleStatus($moduleName)
@@ -120,11 +142,6 @@ class CrudController extends CoreController
         return redirect()->back();
     }
 
-    protected function getArtisan()
-    {
-        return 'php ' . base_path() . '/artisan ';
-    }
-
     protected function returnBackWithError($error)
     {
         return redirect()->back()->withErrors([
@@ -138,7 +155,7 @@ class CrudController extends CoreController
      * @param string $message
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function runCommand($commandName, $commandArgument = '', $message = '')
+    protected function runCommand($commandName, $commandArgument = '', $message = ''): \Illuminate\Http\RedirectResponse
     {
         $moduleName = request()->get('module');
         $name = request()->get('name');
@@ -149,14 +166,14 @@ class CrudController extends CoreController
             $command = $this->getArtisan() . $commandName . ' 2>&1';
         }
 
-        if (in_array($commandName, $this->nonModuleCommands)) {
+        if (in_array($commandName, $this->nonModuleCommands, true)) {
             $command = $this->getArtisan() . $commandName . ' ' . $name . ' 2>&1';
         }
 
         $result = shell_exec($command);
 
         if ($result) {
-            if (in_array($commandName, $this->nonModuleCommands)) {
+            if (in_array($commandName, $this->nonModuleCommands, true)) {
                 if ($commandName === 'make:widget') {
 
                     if (file_exists(base_path('resources/views/widgets'))) {
@@ -187,8 +204,6 @@ class CrudController extends CoreController
             }
         }
 
-        //shell_exec($this->getArtisan() . 'config:cache');
-
         return redirect()->back();
     }
 
@@ -197,13 +212,13 @@ class CrudController extends CoreController
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function migrate()
+    public function migrate(): \Illuminate\Http\RedirectResponse
     {
         $output = '';
 
         File::cleanDirectory(base_path('database/migrations'));
         @file_put_contents(base_path('database/migrations') . '/.gitignore', '*');
-        shell_exec($this->getArtisan() . 'module:publish-migration');
+        Artisan::call('module:publish-migration');
         sleep(3);
 
         $dir = base_path() . '/database/migrations';
@@ -216,25 +231,49 @@ class CrudController extends CoreController
                 foreach ($allFiles as $file) {
                     $fileName = pathinfo(basename($file))['filename'];
 
-                    if (false !== in_array($fileName, $migrations)) {
+                    if (false !== in_array($fileName, $migrations, true)) {
                         @unlink($file);
                     }
                 }
             }
         }
 
-        $command = $this->getArtisan() . 'migrate --force';
-
-        $output .= shell_exec($command . ' 2>&1');
-
-        /*
-        File::cleanDirectory(base_path('database/migrations'));
-        @file_put_contents(base_path('database/migrations') . '/.gitignore', '*');
-        shell_exec($this->getArtisan() . 'module:publish-migration');
-        */
+        Artisan::call('migrate', ['--force' => true]);
+        $output .= Artisan::output();
 
         flash($output ? nl2br($output) : 'Nothing to migrate.', 'warning');
 
         return redirect()->back();
+    }
+
+    protected function getArtisan(): string
+    {
+        $php = 'php';
+        $result = shell_exec("$php -v 2>&1");
+        $isPHP = stripos($result, 'php') !== false;
+
+        if (!$isPHP) {
+            $php = 'php-cli';
+            $result = shell_exec("$php -v 2>&1");
+            $isPHP = stripos($result, 'php') !== false;
+        }
+
+        if (!$isPHP) {
+            $php = PHP_BINARY;
+            $result = shell_exec("$php -v 2>&1");
+            $isPHP = stripos($result, 'php') !== false;
+        }
+
+        if (!$isPHP) {
+            $php = PHP_BINARY . '-cli';
+            $result = shell_exec("$php -v 2>&1");
+            $isPHP = stripos($result, 'php') !== false;
+        }
+
+        if (!$isPHP) {
+            throw new \RuntimeException('Error: Could not find PHP binary.');
+        }
+
+        return $php . ' ' . base_path() . '/artisan ';
     }
 }
