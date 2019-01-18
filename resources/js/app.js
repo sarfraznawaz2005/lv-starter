@@ -1,5 +1,10 @@
 require('./bootstrap');
 
+// prefatch links during idle time
+import quicklink from "quicklink/dist/quicklink.mjs";
+quicklink();
+
+/*
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router'
@@ -44,6 +49,7 @@ window.vm = new Vue({
     el: '#app',
     router
 });
+*/
 
 /////////////////////////////////////////////////////////////////////////////
 // OUT CUSTOM LIBRARY IMPORTS
@@ -74,6 +80,9 @@ require('datatables.net-buttons/js/buttons.html5.js');
 require('datatables.net-buttons/js/buttons.flash.js');
 require('datatables.net-buttons/js/buttons.print.js');
 
+
+
 require('select2');
 //require('summernote');
 //require('bootstrap-validator');
+

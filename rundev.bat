@@ -1,1 +1,0 @@
-npm run dev && php artisan module:publish
