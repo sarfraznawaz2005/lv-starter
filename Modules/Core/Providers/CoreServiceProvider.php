@@ -12,6 +12,7 @@ use Modules\Core\Console\RouteList;
 use Modules\Core\Console\VendorCleanup;
 use Modules\Core\Http\Middleware\HttpsProtocol;
 use Modules\Core\Http\Middleware\OptimizeMiddleware;
+use Modules\Core\Http\Middleware\WeakEtagMiddleware;
 use Modules\Core\Http\Middleware\XSSProtection;
 use function config;
 
@@ -47,6 +48,10 @@ class CoreServiceProvider extends ServiceProvider
 
         if (config('core.settings.minify_html_response')) {
             $kernel->pushMiddleware(OptimizeMiddleware::class);
+        }
+
+        if (config('core.settings.use_weak_etags')) {
+            $kernel->pushMiddleware(WeakEtagMiddleware::class);
         }
 
         #################################################
