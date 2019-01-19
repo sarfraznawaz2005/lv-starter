@@ -1,49 +1,12 @@
 require('./bootstrap');
 
-// prefatch links during idle time
-import quicklink from "quicklink/dist/quicklink.mjs";
-quicklink();
-
+/////////////////////////////////////////////////////////////////////////////
+// Vue Stuff
+/////////////////////////////////////////////////////////////////////////////
 /*
 window.Vue = require('vue');
 
-import VueRouter from 'vue-router'
-
-Vue.use(VueRouter);
-
-/////////////////////////////////////////////////////////////////////////////
-// VueJS Components
-/////////////////////////////////////////////////////////////////////////////
-Vue.component('tasks-component', require('./components/task/view.vue'));
-/////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////
-// VueRouter Routes
-/////////////////////////////////////////////////////////////////////////////
-
-const router = new VueRouter({
-    mode: 'history',
-    routes: [
-        {
-            path: '/tasks_list',
-            name: 'tasks_list',
-            component: require('./components/task/list.vue')
-        },
-        {
-            path: '/tasks_create',
-            name: 'tasks_create',
-            component: require('./components/task/create.vue')
-        },
-        {
-            path: '/tasks_edit',
-            name: 'tasks_edit',
-            component: require('./components/task/edit.vue')
-        },
-        //{path: '/', redirect: '/task_list'},
-    ]
-});
-
-/////////////////////////////////////////////////////////////////////////////
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 window.vm = new Vue({
     el: '#app',
@@ -52,13 +15,18 @@ window.vm = new Vue({
 */
 
 /////////////////////////////////////////////////////////////////////////////
-// OUT CUSTOM LIBRARY IMPORTS
+// OUR CUSTOM LIBRARY IMPORTS
 /////////////////////////////////////////////////////////////////////////////
 require('./libs/listner');
 
 /////////////////////////////////////////////////////////////////////////////
-// 3rd PARTY LIBRARY IMPORTS
+// 3RD PARTY LIBRARY IMPORTS
 /////////////////////////////////////////////////////////////////////////////
+
+// prefatch links during idle time
+import quicklink from "quicklink/dist/quicklink.mjs";
+
+quicklink();
 
 window.swal = require('sweetalert2');
 window.isMobile = require('ismobilejs');
@@ -79,8 +47,6 @@ require('datatables.net-buttons/js/buttons.colVis.js');
 require('datatables.net-buttons/js/buttons.html5.js');
 require('datatables.net-buttons/js/buttons.flash.js');
 require('datatables.net-buttons/js/buttons.print.js');
-
-
 
 require('select2');
 //require('summernote');
