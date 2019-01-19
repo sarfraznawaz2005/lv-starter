@@ -13,11 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
+/*
 Route::middleware('auth:api')->get('/task', function (Request $request) {
     return $request->user();
 });
 
 // for API/Vue Task Component (Sample)
 Route::apiResource('tasks', 'API\TaskAPIController');
-
-
+*/
