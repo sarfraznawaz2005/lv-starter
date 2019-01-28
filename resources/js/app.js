@@ -9,8 +9,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 window.vm = new Vue({
-    el: '#app',
-    router
+    el: '#app'
 });
 */
 
