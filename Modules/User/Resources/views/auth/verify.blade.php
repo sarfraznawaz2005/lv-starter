@@ -5,7 +5,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
-                @section('mycard.component_card_content')
+                @card(['type' => 'white', 'header_type' => 'light', 'classes' => 'mb3'])
+                @slot('header')
+                    <i class="fa fa-lock"></i> {{__('Verify Your Email Address')}}
+                @endslot
+
+                @slot('body')
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
@@ -14,17 +19,10 @@
 
                     {{ __('Before proceeding, please check your email for a verification link.') }}
                     {{ __('If you did not receive the email') }}, <a
-                        href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
-                @endsection
+                            href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>.
+                @endslot
+                @endcard
 
-                @include('core::components.card', [
-                    'id' => 'mycard',
-                    'card_heading' => '<i class="fa fa-lock"></i> ' . __('Verify Your Email Address'),
-                    'card_type' => '',
-                    'card_heading_type' => '',
-                    'card_heading_color' => '',
-                    'show_card_footer' => false,
-                ])
             </div>
         </div>
     </div>

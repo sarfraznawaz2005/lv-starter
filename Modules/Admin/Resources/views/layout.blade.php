@@ -7,26 +7,23 @@
 
 <main class="app-content" id="app">
 
-    @section('card_admin.component_card_before')
-        @if (config('admin.breadcrumb'))
-            {!! Breadcrumbs::render() !!}
-        @endif
-    @endsection
+    @if (config('admin.breadcrumb'))
+        {!! Breadcrumbs::render() !!}
+    @endif
 
-    @section('card_admin.component_card_content')
+    @card(['type' => 'white', 'header_type' => 'light', 'classes' => 'mb3'])
+    @slot('header')
+        <strong class="page-title"><b class="fa fa-th-large"></b> {{Meta::get('title')}}</strong>
+    @endslot
+
+    @slot('body')
         @include('flash::message')
         @include('core::shared.errors')
         @include('core::shared.loader')
 
         @yield('content')
-    @endsection
-
-    @include('core::components.card', [
-        'id' => 'card_admin',
-        'card_heading' => '<span class="page-title"><b class="fa fa-th-large"></b> ' . Meta::get('title') . '</span>',
-        'card_type' => 'white',
-        'card_heading_type' => 'white',
-    ])
+    @endslot
+    @endcard
 
 </main>
 

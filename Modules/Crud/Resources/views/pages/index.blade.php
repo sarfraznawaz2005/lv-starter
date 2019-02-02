@@ -71,14 +71,12 @@
                             $modelDetails .= '<br><br>';
                         @endphp
 
-                        @include('core::popups.general', [
-                        'id' => 'details-modal-' . $module->alias,
-                        'header_class' => 'modal-header-success',
-                        'title_icon' => '',
-                        'title' => 'Details',
-                        'content' => $modelDetails,
-                        'actionbutton' => '',
-                        ])
+                        @modal(['id' => 'details-modal-' . $module->alias, 'header_class' => 'modal-header-success',
+                        'title' => 'Details'])
+                        @slot('body')
+                            {!! $modelDetails !!}
+                        @endslot
+                        @endmodal
 
                     </td>
                     <td>

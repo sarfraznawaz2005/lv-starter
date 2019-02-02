@@ -5,7 +5,12 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
 
-                @section('mycard.component_card_content')
+                @card(['type' => 'white', 'header_type' => 'light', 'classes' => 'mb3'])
+                @slot('header')
+                    <strong><i class="fa fa-lock"></i> Reset Password</strong>
+                @endslot
+
+                @slot('body')
                     {!! Former::open()->action(route('password.update'))->method('post')->class('validate') !!}
                     {!! Former::hidden('token')->value($token) !!}
 
@@ -40,16 +45,8 @@
                     !!}
 
                     {!! Former::close() !!}
-                @endsection
-
-                @include('core::components.card', [
-                    'id' => 'mycard',
-                    'card_heading' => '<i class="fa fa-lock"></i> Reset Password',
-                    'card_type' => '',
-                    'card_heading_type' => '',
-                    'card_heading_color' => '',
-                    'show_card_footer' => false,
-                ])
+                @endslot
+                @endcard
 
             </div>
         </div>

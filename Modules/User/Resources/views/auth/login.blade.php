@@ -5,7 +5,12 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
 
-                @section('mycard.component_card_content')
+                @card(['type' => 'white', 'header_type' => 'light', 'classes' => 'mb3'])
+                @slot('header')
+                    <strong><i class="fa fa-lock"></i> Account Details</strong>
+                @endslot
+
+                @slot('body')
                     {!! Former::open()->action(route('login'))->method('post')->class('validate') !!}
 
                     {!!
@@ -42,9 +47,9 @@
                     !!}
 
                     {!! Former::close() !!}
-                @endsection
+                @endslot
 
-                @section('mycard.component_card_footer')
+                @slot('footer')
                     @if(config('user.enable_password_reset', true))
                         <div class="pull-left">
                             <a href="{{ route('password.request') }}" class="text-blue">
@@ -58,16 +63,8 @@
                         </a>
                     </div>
                     <div class="clearfix"></div>
-                @endsection
-
-                @include('core::components.card', [
-                    'id' => 'mycard',
-                    'card_heading' => '<i class="fa fa-lock"></i> Account Details',
-                    'card_type' => '',
-                    'card_heading_type' => '',
-                    'card_heading_color' => '',
-                    'show_card_footer' => true,
-                ])
+                @endslot
+                @endcard
 
             </div>
         </div>

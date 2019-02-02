@@ -6,6 +6,7 @@ use Bepsvpt\SecureHeaders\SecureHeadersMiddleware;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Console\Cleanup;
 use Modules\Core\Console\RouteList;
@@ -62,6 +63,14 @@ class CoreServiceProvider extends ServiceProvider
             VendorCleanup::class,
             RouteList::class,
         ]);
+
+        #################################################
+        // register our components
+        #################################################
+        Blade::component('core::components.card', 'card');
+        Blade::component('core::components.modal', 'modal');
+
+        #################################################
 
         #################################################
         // enable/disable stuff on live vs local/staging
