@@ -10,42 +10,41 @@
                     <strong><i class="fa fa-lock"></i> Reset Password</strong>
                 @endslot
 
-                @slot('body')
-                    {!! Former::open()->action(route('password.update'))->method('post')->class('validate') !!}
-                    {!! Former::hidden('token')->value($token) !!}
+                {!! Former::open()->action(route('password.update'))->method('post')->class('validate') !!}
+                {!! Former::hidden('token')->value($token) !!}
 
-                    {!!
-                        Former::email('email', 'E-Mail Address')
-                        ->required()
-                        ->label('')
-                        ->placeholder('E-Mail Address')
-                        ->autocomplete('off')
-                    !!}
+                {!!
+                    Former::email('email', 'E-Mail Address')
+                    ->required()
+                    ->label('')
+                    ->placeholder('E-Mail Address')
+                    ->autocomplete('off')
+                !!}
 
-                    {!!
-                          Former::password('password', 'Password')
-                          ->required()
-                          ->label('')
-                          ->placeholder('Password')
-                          ->autocomplete('off')
-                      !!}
+                {!!
+                      Former::password('password', 'Password')
+                      ->required()
+                      ->label('')
+                      ->placeholder('Password')
+                      ->autocomplete('off')
+                  !!}
 
-                    {!!
-                         Former::password('password_confirmation', 'Confirm Password')
-                         ->required()
-                         ->label('')
-                         ->placeholder('Confirm Password')
-                         ->autocomplete('off')
-                     !!}
+                {!!
+                     Former::password('password_confirmation', 'Confirm Password')
+                     ->required()
+                     ->label('')
+                     ->placeholder('Confirm Password')
+                     ->autocomplete('off')
+                 !!}
 
-                    {!!
-                    Former::actions(Former::primary_button('<span class="fa fa-paper-plane"></span> Reset Password')
-                    ->type('submit')
-                    ->class('btn btn-block btn-success btn-raised'))
-                    !!}
+                {!!
+                Former::actions(Former::primary_button('<span class="fa fa-paper-plane"></span> Reset Password')
+                ->type('submit')
+                ->class('btn btn-block btn-success btn-raised'))
+                !!}
 
-                    {!! Former::close() !!}
-                @endslot
+                {!! Former::close() !!}
+
                 @endcard
 
             </div>

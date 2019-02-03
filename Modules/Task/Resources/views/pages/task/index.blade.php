@@ -14,16 +14,15 @@
         </ul>
     @endslot
 
-    @slot('body')
-        <div class="tab-content">
-            <div class="tab-pane active" id="list">
-                {!! $dataTable->table(['class' => 'table table-condensed table-bordered table-hover']) !!}
-            </div>
-            <div class="tab-pane" id="create">
-                @include('task::pages.task._form')
-            </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="list">
+            {!! $dataTable->table(['class' => 'table table-condensed table-bordered table-hover']) !!}
         </div>
-    @endslot
+        <div class="tab-pane" id="create">
+            @include('task::pages.task._form')
+        </div>
+    </div>
+
     @endcard
 
 @endsection

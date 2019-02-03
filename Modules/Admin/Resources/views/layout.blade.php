@@ -16,13 +16,11 @@
         <strong class="page-title"><b class="fa fa-th-large"></b> {{Meta::get('title')}}</strong>
     @endslot
 
-    @slot('body')
-        @include('flash::message')
-        @include('core::shared.errors')
-        @include('core::shared.loader')
+    @include('flash::message')
+    @include('core::shared.errors')
+    @include('core::shared.loader')
 
-        @yield('content')
-    @endslot
+    @yield('content')
     @endcard
 
 </main>

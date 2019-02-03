@@ -12,9 +12,8 @@
         <div class="clearfix"></div>
     @endslot
 
-    @slot('body')
-        @include('task::pages.task._form')
-    @endslot
+    @include('task::pages.task._form')
+
     @endcard
 
 @endsection

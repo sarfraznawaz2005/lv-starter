@@ -10,44 +10,42 @@
                     <strong><i class="fa fa-lock"></i> Account Details</strong>
                 @endslot
 
-                @slot('body')
-                    {!! Former::open()->action(route('login'))->method('post')->class('validate') !!}
+                {!! Former::open()->action(route('login'))->method('post')->class('validate') !!}
 
-                    {!!
-                        Former::email('email', 'E-Mail Address')
-                        ->required()
-                        ->label('')
-                        ->placeholder('E-Mail Address')
-                        ->autocomplete('off')
-                    !!}
+                {!!
+                    Former::email('email', 'E-Mail Address')
+                    ->required()
+                    ->label('')
+                    ->placeholder('E-Mail Address')
+                    ->autocomplete('off')
+                !!}
 
-                    {!!
-                        Former::password('password', 'Password')
-                        ->required()
-                        ->label('')
-                        ->placeholder('Password')
-                        ->autocomplete('off')
-                    !!}
+                {!!
+                    Former::password('password', 'Password')
+                    ->required()
+                    ->label('')
+                    ->placeholder('Password')
+                    ->autocomplete('off')
+                !!}
 
-                    @if(config('user.remember_me_checkbox', true))
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    Stay Signed In
-                                </label>
-                            </div>
+                @if(config('user.remember_me_checkbox', true))
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                Stay Signed In
+                            </label>
                         </div>
-                    @endif
+                    </div>
+                @endif
 
-                    {!!
-                    Former::actions(Former::primary_button('<span class="fa fa-sign-in"></span> Sign In')
-                    ->type('submit')
-                    ->class('btn btn-block btn-success btn-raised'))
-                    !!}
+                {!!
+                Former::actions(Former::primary_button('<span class="fa fa-sign-in"></span> Sign In')
+                ->type('submit')
+                ->class('btn btn-block btn-success btn-raised'))
+                !!}
 
-                    {!! Former::close() !!}
-                @endslot
+                {!! Former::close() !!}
 
                 @slot('footer')
                     @if(config('user.enable_password_reset', true))

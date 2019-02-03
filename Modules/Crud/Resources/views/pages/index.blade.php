@@ -73,9 +73,9 @@
 
                         @modal(['id' => 'details-modal-' . $module->alias, 'header_class' => 'modal-header-success',
                         'title' => 'Details'])
-                        @slot('body')
-                            {!! $modelDetails !!}
-                        @endslot
+
+                        {!! $modelDetails !!}
+
                         @endmodal
 
                     </td>

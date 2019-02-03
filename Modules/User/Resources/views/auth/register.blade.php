@@ -10,48 +10,46 @@
                     <strong><i class="fa fa-user"></i> Account Details</strong>
                 @endslot
 
-                @slot('body')
-                    {!! Former::open()->action(route('register'))->method('post')->class('validate') !!}
+                {!! Former::open()->action(route('register'))->method('post')->class('validate') !!}
 
-                    {!!
-                         Former::text('name')
-                         ->required()
-                         ->label('')
-                         ->placeholder('Name')
-                     !!}
+                {!!
+                     Former::text('name')
+                     ->required()
+                     ->label('')
+                     ->placeholder('Name')
+                 !!}
 
-                    {!!
-                        Former::email('email', 'E-Mail Address')
-                        ->required()
-                        ->label('')
-                        ->placeholder('E-Mail Address')
-                        ->autocomplete('off')
-                    !!}
+                {!!
+                    Former::email('email', 'E-Mail Address')
+                    ->required()
+                    ->label('')
+                    ->placeholder('E-Mail Address')
+                    ->autocomplete('off')
+                !!}
 
-                    {!!
-                        Former::password('password', 'Password')
-                        ->required()
-                        ->label('')
-                        ->placeholder('Password')
-                        ->autocomplete('off')
-                    !!}
+                {!!
+                    Former::password('password', 'Password')
+                    ->required()
+                    ->label('')
+                    ->placeholder('Password')
+                    ->autocomplete('off')
+                !!}
 
-                    {!!
-                         Former::password('password_confirmation', 'Confirm Password')
-                         ->required()
-                         ->label('')
-                         ->placeholder('Confirm Password')
-                         ->autocomplete('off')
-                     !!}
+                {!!
+                     Former::password('password_confirmation', 'Confirm Password')
+                     ->required()
+                     ->label('')
+                     ->placeholder('Confirm Password')
+                     ->autocomplete('off')
+                 !!}
 
-                    {!!
-                    Former::actions(Former::primary_button('<span class="fa fa-paper-plane"></span> Sign Up')
-                    ->type('submit')
-                    ->class('btn btn-block btn-success btn-raised'))
-                    !!}
+                {!!
+                Former::actions(Former::primary_button('<span class="fa fa-paper-plane"></span> Sign Up')
+                ->type('submit')
+                ->class('btn btn-block btn-success btn-raised'))
+                !!}
 
-                    {!! Former::close() !!}
-                @endslot
+                {!! Former::close() !!}
 
                 @slot('footer')
                     <div class="text-center">

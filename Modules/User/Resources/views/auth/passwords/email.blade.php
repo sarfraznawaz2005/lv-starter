@@ -10,25 +10,23 @@
                     <strong><i class="fa fa-lock"></i> Reset Password</strong>
                 @endslot
 
-                @slot('body')
-                    {!! Former::open()->action(route('password.email'))->method('post')->class('validate') !!}
+                {!! Former::open()->action(route('password.email'))->method('post')->class('validate') !!}
 
-                    {!!
-                        Former::email('email', 'E-Mail Address')
-                        ->required()
-                        ->label('')
-                        ->placeholder('E-Mail Address')
-                        ->autocomplete('off')
-                    !!}
+                {!!
+                    Former::email('email', 'E-Mail Address')
+                    ->required()
+                    ->label('')
+                    ->placeholder('E-Mail Address')
+                    ->autocomplete('off')
+                !!}
 
-                    {!!
-                    Former::actions(Former::primary_button('<span class="fa fa-paper-plane"></span> Reset Password')
-                    ->type('submit')
-                    ->class('btn btn-block btn-success btn-raised'))
-                    !!}
+                {!!
+                Former::actions(Former::primary_button('<span class="fa fa-paper-plane"></span> Reset Password')
+                ->type('submit')
+                ->class('btn btn-block btn-success btn-raised'))
+                !!}
 
-                    {!! Former::close() !!}
-                @endslot
+                {!! Former::close() !!}
 
                 @slot('footer')
                     <div class="text-center">

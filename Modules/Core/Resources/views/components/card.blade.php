@@ -5,7 +5,7 @@
         </div>
     @endif
 
-    <div class="card-body {{$body_classes ?? ''}}" {{$body_extra_attribs ?? ''}}>{!! $body !!}</div>
+    <div class="card-body {{$body_classes ?? ''}}" {{$body_extra_attribs ?? ''}}>{!! $slot !!}</div>
 
     @if(isset($footer))
         <div class="card-footer">{!! $footer !!}</div>
