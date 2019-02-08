@@ -6,7 +6,7 @@
 </footer>
 
 {{-- IE es6 pollyfill --}}
-@if(stripos(request()->header('User-Agent'),'Trident') !== false)
+@if(Browser::isIE())
     <script src="/modules/core/js/pollyfills.js"></script>
 @endif
 
