@@ -16,6 +16,7 @@ mix.babel([
 // only site-wide needed files should be added here
 mix.styles([
     'public/css/app.css',
+    'public/modules/core/css/loader.css',
 ], 'public/css/app.css');
 
 if (!mix.inProduction()) {
