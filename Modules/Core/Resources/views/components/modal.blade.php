@@ -9,12 +9,12 @@
 
                 <h4 class="modal-title">
                     {!! $title_icon ?? '' !!}
-                    {!! $title !!}
+                    {{$title}}
                 </h4>
             </div>
 
             <div class="modal-body" style="padding: 0 20px 5px 20px;">
-                {!! $slot !!}
+                {{$slot}}
             </div>
 
             <div class="modal-footer" style="padding: 7px 10px 5px 10px;">
