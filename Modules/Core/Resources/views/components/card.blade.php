@@ -1,3 +1,5 @@
+{{-- bootstrap card component --}}
+
 @php
     $type = $type ?? 'white';
     $header_type = $header_type ?? 'light';

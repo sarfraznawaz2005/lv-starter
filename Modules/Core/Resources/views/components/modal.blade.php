@@ -1,3 +1,5 @@
+{{-- bootstrap modal component --}}
+
 <!-- general modal start -->
 <div id="{{$id}}" class="modal fade" tabindex="-1" role="dialog" style="z-index: 99999;">
     <div class="modal-dialog {{isset($wide) ? 'modal-xl' : ''}}">

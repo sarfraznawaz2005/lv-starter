@@ -14,7 +14,11 @@
 
 {!! Former::file('file', 'Optional Image')->accept('image/jpeg', 'image/png')->max(2, 'MB') !!}
 
-@include ('core::shared.submit')
+<div class="card-footer border-light">
+    @button
+    <i class="fa fa-save"></i> Save
+    @endbutton
+</div>
 
 {!! Former::close() !!}
 

@@ -69,6 +69,7 @@ class CoreServiceProvider extends ServiceProvider
         #################################################
         Blade::component('core::components.card', 'card');
         Blade::component('core::components.modal', 'modal');
+        Blade::component('core::components.button', 'button');
 
         #################################################
 
