@@ -19,6 +19,4 @@ mix.styles([
     'public/modules/core/css/loader.css',
 ], 'public/css/app.css');
 
-if (!mix.inProduction()) {
-    mix.version();
-}
+mix.version();
