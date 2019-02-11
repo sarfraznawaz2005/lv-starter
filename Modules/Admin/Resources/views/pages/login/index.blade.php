@@ -68,7 +68,7 @@
 
         <div class="form-group btn-container">
             <button type="submit" class="btn btn-primary btn-block">
-                <i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN
+                <i class="fa fa-sign-in fa-lg fa-fw"></i> SIGN IN
             </button>
         </div>
 
