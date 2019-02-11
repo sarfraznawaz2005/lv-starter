@@ -3,7 +3,7 @@
 // Allows to push same view only file
 // Usage:
 // @pushonce('stack_name')
-// some stuff
+//  some stuff
 // @endpushonce
 //////////////////////////////////////////////////////////
 
