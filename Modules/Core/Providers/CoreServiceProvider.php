@@ -12,6 +12,7 @@ use Modules\Core\Console\Cleanup;
 use Modules\Core\Console\RouteList;
 use Modules\Core\Console\VendorCleanup;
 use Modules\Core\Http\Middleware\Cached;
+use Modules\Core\Http\Middleware\EnvLogoMiddleware;
 use Modules\Core\Http\Middleware\HttpsProtocol;
 use Modules\Core\Http\Middleware\OptimizeMiddleware;
 use Modules\Core\Http\Middleware\WeakEtagMiddleware;
@@ -88,6 +89,8 @@ class CoreServiceProvider extends ServiceProvider
 
             // disable query log
             queryLog(false);
+        } else {
+            $kernel->pushMiddleware(EnvLogoMiddleware::class);
         }
     }
 
