@@ -33,7 +33,6 @@ require('./libs/listner');
 // 3RD PARTY LIBRARY IMPORTS
 /////////////////////////////////////////////////////////////////////////////
 window.swal = require('sweetalert2');
-window.isMobile = require('ismobilejs');
 window.Noty = require('noty');
 window.mojs = require('mo-js');
 window.pulsate = require('my-jquery-pulsate');
