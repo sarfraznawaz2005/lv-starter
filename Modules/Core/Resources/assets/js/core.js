@@ -96,12 +96,6 @@ $(function () {
     });
     */
 
-    // disable submit button after clicked once to avoid duplicatation
-    $('button[type="submit"], input[type="submit"]').disabler({
-        timeout: 5000,
-        html: 'Wait...'
-    });
-
     /*
     // validate forms
     $('form.validate').validator({

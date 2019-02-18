@@ -8,7 +8,6 @@ mix.js('resources/js/app.js', 'public/js')
 mix.babel([
     'public/js/app.js',
     'public/modules/core/js/plugins/datatables/fnFilterOnReturn.js',
-    'public/modules/core/js/plugins/disabler.min.js',
     'public/modules/core/js/core.js',
 ], 'public/js/app.js');
 

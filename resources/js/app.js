@@ -32,11 +32,18 @@ require('./libs/listner');
 /////////////////////////////////////////////////////////////////////////////
 // 3RD PARTY LIBRARY IMPORTS
 /////////////////////////////////////////////////////////////////////////////
+import buttondisabler from 'buttondisabler';
+
+// disable submit button after clicked once to avoid duplicatation
+new buttondisabler({
+    timeout: 5000,
+    text: 'Wait...'
+});
+
 window.swal = require('sweetalert2');
 window.Noty = require('noty');
 window.mojs = require('mo-js');
 window.pulsate = require('my-jquery-pulsate');
-//window.disabler = require('disabler'); // to be fixed
 
 // DataTables
 require('datatables.net');
