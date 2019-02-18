@@ -41,9 +41,7 @@ $(function () {
     });
 
     // BTS Tooltips
-    if (!isMobile.any) {
-        $('[data-tooltip]').tooltip();
-    }
+    $('[data-tooltip]').tooltip();
 
     // this event is called when datatable is drawn
     $dataTable.on('draw.dt', function () {
