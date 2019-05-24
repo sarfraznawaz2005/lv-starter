@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AppLog</title>
+    <title>PLogs</title>
 
     <link rel="shortcut icon" href="/logs.ico">
 
@@ -42,7 +42,7 @@
         }
 
         thead tr {
-            background-image: radial-gradient(#eee, #bbbbbb);
+            background-image: radial-gradient(#ffe773, #d9bd36);
         }
     </style>
 </head>
@@ -51,79 +51,61 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-md-12 table-container">
-            @if ($logs === null)
-                <div>
-                    Log file >50M, please download it.
-                </div>
-            @else
-                <table id="table-log" class="table table-bordered table-hover">
-                    <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>Message</th>
-                    </tr>
-                    </thead>
 
-                    <tfoot>
-                    <tr>
-                        <th>Type</th>
-                        <th>Date</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                    </tfoot>
+            <table id="table-log" class="table table-bordered table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>Message</th>
+                </tr>
+                </thead>
 
-                    <tbody>
+                <tfoot>
+                <tr>
+                    <th>Type</th>
+                    <th>Date</th>
+                    <th>&nbsp;</th>
+                </tr>
+                </tfoot>
 
-                    @foreach($logs as $key => $log)
-                        <tr data-display="stack{{{$key}}}">
+                <tbody>
 
-                            <td class="text-{{{$log['level_class']}}} level" data-value="{{ucfirst($log['level'])}}">
-                                <span class="label label-{{{$log['level_class']}}}">
-                                    <span class="glyphicon glyphicon-{{{$log['level_img']}}}-sign"></span>
-                                    &nbsp;{{ucfirst($log['level'])}}
+                @foreach($logs as $key => $log)
+                    <tr data-display="stack{{{$key}}}">
+
+                        <td class="text-{{{$log->level_class}}} level" data-value="{{ucfirst($log->level)}}">
+                                <span class="label label-{{{$log->level_class}}}">
+                                    <span class="glyphicon glyphicon-{{{$log->level_img}}}-sign"></span>
+                                    &nbsp;{{ucfirst($log->level)}}
                                 </span>
-                            </td>
+                        </td>
 
-                            <td class="date" data-value="{{$log['date']}}">
-                                {{{$log['date']}}}
-                            </td>
+                        <td class="date" data-value="{{$log->created_at}}">
+                            {{{$log->created_at}}}
+                        </td>
 
-                            <td class="text">
-                                @if ($log['stack'])
-                                    <a class="pull-right expand btn btn-success btn-xs"
-                                       data-display="stack{{{$key}}}">
-                                        <span class="glyphicon glyphicon-zoom-in"></span>
-                                    </a>
-                                @endif
+                        <td class="text">
+                            @if ($log->stack)
+                                <a class="pull-right expand btn btn-success btn-xs"
+                                   data-display="stack{{{$key}}}">
+                                    <span class="glyphicon glyphicon-zoom-in"></span>
+                                </a>
+                            @endif
 
-                                {{{$log['text']}}}
+                            {{{$log->message}}}
 
-                                @if (isset($log['in_file'])) <br/>{{{$log['in_file']}}}@endif
+                            @if ($log->stack)
+                                <div class="stack" id="stack{{{$key}}}"
+                                     style="display: none; white-space: pre-wrap;">{{{ trim($log->stack) }}}
+                                </div>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
 
-                                @if ($log['stack'])
-                                    <div class="stack" id="stack{{{$key}}}"
-                                         style="display: none; white-space: pre-wrap;">{{{ trim($log['stack']) }}}
-                                    </div>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-
-                    </tbody>
-                </table>
-            @endif
-
-            <div>
-                @if(isset($exists) && $exists)
-                    <a href="?dl={{ base64_encode($current_file) }}"><span
-                                class="glyphicon glyphicon-download-alt"></span>
-                        Download File</a>
-                    -
-                    <a id="delete-log" href="?del={{ base64_encode($current_file) }}"><span
-                                class="glyphicon glyphicon-trash"></span> Delete File</a>
-                @endif
-            </div>
+                </tbody>
+            </table>
 
         </div>
     </div>
@@ -200,10 +182,6 @@
         // put filters on header
         $('tfoot').css('display', 'table-header-group');
         ///////////////////////////////////////////////////////////////
-
-        $('#delete-log, #delete-all-log').click(function () {
-            return confirm('Are you sure?');
-        });
 
     });
 </script>
