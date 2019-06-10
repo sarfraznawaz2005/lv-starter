@@ -8,6 +8,9 @@ return [
     // route where visitlog will be available in your app.
     'route' => 'applogs__',
 
+    // number of entries to show per page
+    'entries_per_page' => 10,
+
     // set what levels of logs should be captured. It can be one or more of:
     // "debug", "info", "notice", "warning", "error", "critical",
     // "alert", "emergency", "processed". To capture all events just use "all"
