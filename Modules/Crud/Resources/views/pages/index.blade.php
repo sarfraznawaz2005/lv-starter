@@ -2,7 +2,25 @@
 
 @section('content')
 
+    <?php if ($migrationsPending) : ?>
+    <style>
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+    <div class="text-center" style="font-size: 20px;" align="center">
+        <strong class="blink label label-warning">Migrations Pending!</strong>
+    </div>
+    <?php endif; ?>
+
 @section('main_crud_panel.component_panel_buttons')
+
     <button data-placement="bottom" data-tooltip data-original-title="Add New Module" data-label="Add New Module"
             class="btn btn-info btn-sm" data-toggle="modal" data-target="#create-module-modal">
         <i class="glyphicon glyphicon-plus"></i> Add New Module

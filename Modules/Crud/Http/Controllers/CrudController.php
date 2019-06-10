@@ -11,10 +11,10 @@ namespace Modules\Crud\Http\Controllers;
 use DB;
 use File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Meta;
 use Modules\Core\Http\Controllers\CoreController;
 use Nwidart\Modules\Facades\Module;
-use Meta;
-use Illuminate\Support\Facades\Artisan;
 
 class CrudController extends CoreController
 {
@@ -26,7 +26,9 @@ class CrudController extends CoreController
     {
         title('Module Manager');
 
-        return view('crud::pages.index');
+        $migrationsPending = $this->areMigrationsPending();
+
+        return view('crud::pages.index', compact('migrationsPending'));
     }
 
     /**
@@ -275,5 +277,19 @@ class CrudController extends CoreController
         }
 
         return $php . ' ' . base_path() . '/artisan ';
+    }
+
+    protected function areMigrationsPending(): bool
+    {
+        $output = '';
+
+        Artisan::call('migrate', ['--pretend' => true]);
+        $output .= Artisan::output();
+
+        if (false === strpos($output, 'Nothing')) {
+            return true;
+        }
+
+        return false;
     }
 }
