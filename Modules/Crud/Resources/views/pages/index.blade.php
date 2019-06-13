@@ -193,6 +193,14 @@
     </div>
 </div>
 
+<div style="position: absolute; bottom: 0; left: 15px;">
+    <small><strong>US/Central: <?= date('h:ia') ?></strong></small>
+</div>
+
+<div style="position: absolute; bottom: 0; right: 15px;">
+    <small><strong>PHP: <?= PHP_VERSION ?></strong></small>
+</div>
+
 <div id="create-module-modal" class="modal fade" tabindex="-1" role="dialog" style="z-index: 99999;">
     {!! Former::open()->action(route('crud.store'))->method('post') !!}
     <div class="modal-dialog">
@@ -237,4 +245,18 @@
             });
         });
     </script>
+@endpush
+
+@push('styles')
+    <style>
+        a {
+            color:#2780E3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color:#333;
+            text-decoration: none;
+        }
+    </style>
 @endpush

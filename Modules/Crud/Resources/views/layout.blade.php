@@ -17,7 +17,7 @@
             @include('core::components.panel', [
                 'id' => 'main_crud_panel',
                 'panel_type' => 'default',
-                'panel_heading' => '<h1><i class="glyphicon glyphicon-th"></i> '.Meta::get('title').'</h1>',
+                'panel_heading' => '<h1><a href="/"><i class="glyphicon glyphicon-th"></i> '.appName().'</a></h1>',
                 'show_panel_footer' => false,
             ])
         </div>

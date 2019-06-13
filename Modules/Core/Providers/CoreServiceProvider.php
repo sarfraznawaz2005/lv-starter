@@ -90,7 +90,7 @@ class CoreServiceProvider extends ServiceProvider
             // disable query log
             queryLog(false);
         } else {
-            $kernel->pushMiddleware(EnvLogoMiddleware::class);
+            //$kernel->pushMiddleware(EnvLogoMiddleware::class);
         }
     }
 
