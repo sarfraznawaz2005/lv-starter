@@ -194,11 +194,11 @@
 </div>
 
 <div style="position: absolute; bottom: 0; left: 15px;">
-    <small><strong>US/Central: <?= date('h:ia') ?></strong></small>
+    <small><strong style="color: #fff;">US/Central: <?= date('h:ia') ?></strong></small>
 </div>
 
 <div style="position: absolute; bottom: 0; right: 15px;">
-    <small><strong>PHP: <?= PHP_VERSION ?></strong></small>
+    <small><strong style="color: #fff;">PHP: <?= PHP_VERSION ?></strong></small>
 </div>
 
 <div id="create-module-modal" class="modal fade" tabindex="-1" role="dialog" style="z-index: 99999;">
