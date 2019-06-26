@@ -39,6 +39,7 @@ abstract class CoreImport
 
     protected static $header = [];
     protected static $totalRows = 0;
+    protected static $rows = [];
     protected static $failedRows = [];
 
     protected static $chunkSize = 500;
@@ -54,29 +55,19 @@ abstract class CoreImport
         ini_set('max_input_time', '-1');
         ini_set('max_execution_time', '0');
         set_time_limit(0);
-
-        // query optimization
         DB::disableQueryLog();
 
-        static::$csvPath = $csvPath;
         static::$deleteProcessedFile = $deleteProcessedFile;
-    }
 
-    /**
-     * Gets all rows from CSV file
-     *
-     * @return \Generator
-     * @throws \Exception
-     */
-    protected function getRow(): \Generator
-    {
-        if (!file_exists(static::$csvPath)) {
-            throw new \RuntimeException(static::$csvPath . ' not found');
+        if (!file_exists($csvPath)) {
+            throw new \RuntimeException($csvPath . ' not found');
         }
+
+        static::$csvPath = $csvPath;
 
         $rows = array_map('str_getcsv', file(static::$csvPath));
 
-        array_walk($rows, function (&$a) use ($rows) {
+        array_walk($rows, static function (&$a) use ($rows) {
             $a = array_combine($rows[0], $a);
         });
 
@@ -88,9 +79,18 @@ abstract class CoreImport
         static::$totalRows = count($rows);
 
         # apply csv --> db column name mappings
-        $rows = $this->applyMappings($rows);
+        static::$rows = $this->applyMappings($rows);
+    }
 
-        yield from $rows;
+    /**
+     * Gets all rows from CSV file
+     *
+     * @return \Generator
+     * @throws \Exception
+     */
+    protected function getRow(): \Generator
+    {
+        yield from static::$rows;
     }
 
     /**
