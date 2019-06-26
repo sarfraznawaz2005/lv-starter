@@ -78,6 +78,9 @@ abstract class CoreImport
 
         static::$totalRows = count($rows);
 
+        # important to reset to avoid adding previous file errors into existing one
+        static::$failedRows = [];
+
         # apply csv --> db column name mappings
         static::$rows = $this->applyMappings($rows);
     }
@@ -141,8 +144,6 @@ abstract class CoreImport
         $row[] = '[' . $messages . ']';
 
         static::$failedRows[] = $row;
-
-        return static::$failedRows;
     }
 
     /**
@@ -186,5 +187,26 @@ abstract class CoreImport
             'pass' => static::$totalRows - count(static::$failedRows),
             'fail' => count(static::$failedRows),
         ];
+    }
+
+    /**
+     * fix dates to mysql date type
+     *
+     * @param string $field
+     * @param array $row
+     * @param bool $timestamp
+     * @return bool
+     */
+    protected function fixDate(string $field, array &$row, bool $timestamp = false): bool
+    {
+        if (!empty($row[$field])) {
+            if ($timestamp) {
+                $row[$field] = date('Y-m-d H:i:s', strtotime($row[$field]));
+            } else {
+                $row[$field] = date('Y-m-d', strtotime($row[$field]));
+            }
+        }
+
+        return true;
     }
 }
