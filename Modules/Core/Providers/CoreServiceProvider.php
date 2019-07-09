@@ -21,19 +21,12 @@ use Modules\Core\Http\Middleware\XSSProtection;
 class CoreServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
      * Boot the application events.
      *
      * @param Router $router
      * @param Kernel $kernel
      */
-    public function boot(Router $router, Kernel $kernel)
+    public function boot(Router $router, Kernel $kernel): void
     {
         $this->registerTranslations();
         $this->registerConfig();
@@ -98,7 +91,7 @@ class CoreServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->register(RouteServiceProvider::class);
     }
@@ -108,7 +101,7 @@ class CoreServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerConfig()
+    protected function registerConfig(): void
     {
         $this->publishes([
             __DIR__ . '/../Config/config.php' => config_path('core.php'),
@@ -123,7 +116,7 @@ class CoreServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerViews()
+    public function registerViews(): void
     {
         $viewPath = resource_path('views/modules/core');
 
@@ -143,7 +136,7 @@ class CoreServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function registerTranslations()
+    public function registerTranslations(): void
     {
         $langPath = resource_path('lang/modules/core');
 
@@ -158,20 +151,10 @@ class CoreServiceProvider extends ServiceProvider
      * Register an additional directory of factories.
      * @source https://github.com/sebastiaanluca/laravel-resource-flow/blob/develop/src/Modules/ModuleServiceProvider.php#L66
      */
-    public function registerFactories()
+    public function registerFactories(): void
     {
         if (!app()->environment('production')) {
             app(Factory::class)->load(__DIR__ . '/../Database/factories');
         }
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
     }
 }
