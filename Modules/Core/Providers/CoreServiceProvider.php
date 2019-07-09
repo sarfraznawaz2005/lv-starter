@@ -7,17 +7,16 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Console\Cleanup;
 use Modules\Core\Console\RouteList;
 use Modules\Core\Console\VendorCleanup;
 use Modules\Core\Http\Middleware\Cached;
-use Modules\Core\Http\Middleware\EnvLogoMiddleware;
 use Modules\Core\Http\Middleware\HttpsProtocol;
 use Modules\Core\Http\Middleware\OptimizeMiddleware;
 use Modules\Core\Http\Middleware\WeakEtagMiddleware;
 use Modules\Core\Http\Middleware\XSSProtection;
-use function config;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -136,7 +135,7 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/core';
-        }, \Config::get('view.paths')), [$sourcePath]), 'core');
+        }, config::get('view.paths')), [$sourcePath]), 'core');
     }
 
     /**
