@@ -2,6 +2,10 @@
 
 Laravel Starter project with useful laravel packages needed for most apps.
 
+# Requirement
+
+PHP 7+
+
 ## Installation ##
 
 - Clone or download the repository
