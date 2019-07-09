@@ -2,18 +2,12 @@
 
 namespace Modules\Task\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
 class TaskServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
     /**
      * Boot the application events.
      *
@@ -70,7 +64,7 @@ class TaskServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/task';
-        }, \Config::get('view.paths')), [$sourcePath]), 'task');
+        }, config::get('view.paths')), [$sourcePath]), 'task');
     }
 
     /**
@@ -100,13 +94,4 @@ class TaskServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
-    }
 }

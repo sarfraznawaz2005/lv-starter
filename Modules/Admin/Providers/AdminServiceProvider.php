@@ -2,6 +2,7 @@
 
 namespace Modules\Admin\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 use Modules\Admin\Http\Middleware\AdminMiddleware;
@@ -78,7 +79,7 @@ class AdminServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/admin';
-        }, \Config::get('view.paths')), [$sourcePath]), 'admin');
+        }, config::get('view.paths')), [$sourcePath]), 'admin');
     }
 
     /**
@@ -108,13 +109,4 @@ class AdminServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
-    }
 }

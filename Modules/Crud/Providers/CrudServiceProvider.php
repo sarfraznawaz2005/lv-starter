@@ -2,6 +2,7 @@
 
 namespace Modules\Crud\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
@@ -70,7 +71,7 @@ class CrudServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/crud';
-        }, \Config::get('view.paths')), [$sourcePath]), 'crud');
+        }, config::get('view.paths')), [$sourcePath]), 'crud');
     }
 
     /**
@@ -100,13 +101,4 @@ class CrudServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
-    }
 }

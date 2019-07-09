@@ -16,9 +16,4 @@ class EventServiceProvider extends ServiceProvider
     protected $subscribe = [
         TaskSubscriber::class,
     ];
-
-    public function boot()
-    {
-        parent::boot();
-    }
 }

@@ -10,9 +10,4 @@ class EventServiceProvider extends ServiceProvider
     protected $subscribe = [
         UserSubscriber::class,
     ];
-
-    public function boot()
-    {
-        parent::boot();
-    }
 }

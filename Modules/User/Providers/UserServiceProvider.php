@@ -2,18 +2,12 @@
 
 namespace Modules\User\Providers;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
 class UserServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
     /**
      * Boot the application events.
      *
@@ -70,7 +64,7 @@ class UserServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
             return $path . '/modules/user';
-        }, \Config::get('view.paths')), [$sourcePath]), 'user');
+        }, config::get('view.paths')), [$sourcePath]), 'user');
     }
 
     /**
@@ -100,13 +94,4 @@ class UserServiceProvider extends ServiceProvider
         }
     }
 
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [];
-    }
 }
