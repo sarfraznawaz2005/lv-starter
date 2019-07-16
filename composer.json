@@ -33,6 +33,7 @@
         "sarfraznawaz2005/emailwatch": "^1.0",
         "sarfraznawaz2005/noty": "^1.0",
         "sarfraznawaz2005/plogs": "^1.0",
+        "sarfraznawaz2005/servermonitor": "^1.0",
         "watson/active": "^3.0",
         "watson/validating": "^3.1",
         "yajra/laravel-datatables-buttons": "^4.4",
