@@ -23,17 +23,8 @@ return [
     */
     'web_interface_enabled' => true,
     'route' => 'servermonitor',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Basic Http Authentication
-    |--------------------------------------------------------------------------
-    |
-    | If "true", the Server Monitor page can be viewed by any user who provides
-    | correct login information (eg all app users).
-    |
-    */
-    'http_authentication' => false,
+    'username' => 'servermonitor',
+    'password' => 'servermonitor',
 
     /*
     |--------------------------------------------------------------------------
@@ -57,6 +48,19 @@ return [
 
         // These checks are for server only
         'server' => [
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\FTPConnectionWorks::class => [
+                'servers' => [
+                    'myserver' => [
+                        'host' => 'ftp.yourdomain.com',
+                        'port' => 21,
+                        'username' => 'username',
+                        'password' => 'password',
+                        'timeout' => 90,
+                    ],
+                ]
+            ],
+            */    
         ],
 
         // These checks are for application only. These checks run in order as specified here.
@@ -114,7 +118,7 @@ return [
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ServersArePingable::class => [
                     'servers' => [
                         'www.google.com',
-                        ['host' => 'www.google.com', 'port' => 8080],
+                        ['host' => 'www.google.com', 'port' => 80],
                         '8.8.8.8',
                         ['host' => '8.8.8.8', 'port' => 8080, 'timeout' => 5],
                     ],
