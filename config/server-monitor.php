@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable / Disable
+    | Enable/Disable Server Monitor
     |--------------------------------------------------------------------------
     |
     | Enable or disable Server Monitor
@@ -14,26 +14,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Server Monitor Web Route
+    | Web Interface
     |--------------------------------------------------------------------------
     |
-    | Define if web interface will be enabled and route where Server Monitor
-    | will be available in your app.
+    | Define if web interface will be enabled, its route where Server Monitor
+    | will be available in your app and basic auth login details.
     |
     */
     'web_interface_enabled' => true,
     'route' => 'servermonitor',
+    'username' => 'servermonitor',
+    'password' => 'servermonitor',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Basic Http Authentication
-    |--------------------------------------------------------------------------
-    |
-    | If "true", the Server Monitor page can be viewed by any user who provides
-    | correct login information (eg all app users).
-    |
-    */
-    'http_authentication' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -57,6 +49,60 @@ return [
 
         // These checks are for server only
         'server' => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\DiskSpaceEnough::class => [
+                'fail_percentage' => 90
+            ],
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\FTPConnectionWorks::class => [
+                'servers' => [
+                    'myserver' => [
+                        'host' => 'ftp.yourdomain.com',
+                        'username' => 'username',
+                        'password' => 'password',
+                        'port' => 21,
+                        'timeout' => 10,
+                        'passive' => true,
+                        'ssl' => false
+                    ],
+                ]
+            ],
+            */
+
+            /*
+            // requires "league/flysystem-sftp" package.
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SFTPConnectionWorks::class => [
+                'servers' => [
+                    'myserver' => [
+                        'host' => 'ftp.yourdomain.com',
+                        'username' => 'username',
+                        'password' => 'password',
+                        'privateKey' => 'path/to/or/contents/of/privatekey',
+                        'port' => 22,
+                        'timeout' => 10,
+                        'ssl' => false
+                    ],
+                ]
+            ],
+            */
+
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SSHConnectionWorks::class => [
+                'servers' => [
+                    'myserver' => [
+                        'host' => 'ftp.yourdomain.com',
+                        'username' => 'username',
+                        'port' => 22,
+                        'privateKey' => 'path/to/privatekey/file'
+                    ],
+                ]
+            ],
+            */
+
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SSLCertificateExpired::class => [
+                'url' => 'https://yourdomain.com'
+            ],
+            */
         ],
 
         // These checks are for application only. These checks run in order as specified here.
@@ -85,10 +131,12 @@ return [
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
 
                 /*
+                // requires "Predis\Client" package.
+
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\RedisCanBeAccessed::class => [
                     'default_connection' => true,
                     'connections' => [],
-                ]
+                ],
                 */
             ],
 
@@ -114,9 +162,7 @@ return [
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ServersArePingable::class => [
                     'servers' => [
                         'www.google.com',
-                        ['host' => 'www.google.com', 'port' => 8080],
-                        '8.8.8.8',
-                        ['host' => '8.8.8.8', 'port' => 8080, 'timeout' => 5],
+                        ['host' => 'www.google.com', 'port' => 80],
                     ],
                 ],
                 */
@@ -205,6 +251,5 @@ return [
         'notification_pushover_user_key' => '',
         'notification_pushover_sound' => 'siren',
     ],
-
 
 ];
