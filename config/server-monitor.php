@@ -1,4 +1,3 @@
-
 <?php
 
 return [
@@ -57,8 +56,9 @@ return [
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\DiskSpaceEnough::class => [
                 'fail_percentage' => 90
             ],
+
             /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\FTPConnectionWorks::class => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\FtpConnectionWorks::class => [
                 'servers' => [
                     'myserver' => [
                         'host' => 'ftp.yourdomain.com',
@@ -75,7 +75,7 @@ return [
 
             /*
             // requires "league/flysystem-sftp" package.
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SFTPConnectionWorks::class => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SftpConnectionWorks::class => [
                 'servers' => [
                     'myserver' => [
                         'host' => 'ftp.yourdomain.com',
@@ -91,20 +91,7 @@ return [
             */
 
             /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SSHConnectionWorks::class => [
-                'servers' => [
-                    'myserver' => [
-                        'host' => 'ftp.yourdomain.com',
-                        'username' => 'username',
-                        'port' => 22,
-                        'privateKey' => 'path/to/privatekey/file'
-                    ],
-                ]
-            ],
-            */
-
-            /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SSLCertificateExpired::class => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SslCertificateValid::class => [
                 'url' => 'https://yourdomain.com'
             ],
             */
@@ -117,6 +104,14 @@ return [
                         'port' => null,
                         'timeout' => 5
                     ],
+                ]
+            ],
+            */
+
+           /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\HttpStatusCode::class => [
+                'sites' => [
+                    'google' => ['url' => 'http://google.com', 'expected_code' => 200],
                 ]
             ],
             */
@@ -139,13 +134,18 @@ return [
                         base_path('bootstrap/cache'),
                     ]
                 ],
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DBCanBeAccessed::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DatabaseCanBeAccessed::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\MigrationsAreUpToDate::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerDependenciesUpToDate::class => [
                     // Path to composer binary
                     'binary_path' => 'composer'
                 ],
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\SecurityChecker::class,
+
+                /*
+                // requires "sensiolabs/security-checker" package.
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerPackagesSecurity::class,
+                */
+
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
 
                 /*
@@ -188,34 +188,34 @@ return [
                 ],
                 */
             ],
-        ],
 
-        // Checks that will run only on non-production environments
-        'development' => [
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOn::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigNotCached::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreNotCached::class,
-        ],
-
-        // Checks that will run only on production environment
-        'production' => [
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOff::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigCached::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreCached::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\PhpExtensionsAreDisabled::class => [
-                'extensions' => [
-                    'xdebug',
-                ],
+            // Checks that will run only on non-production environments
+            'development' => [
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOn::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigNotCached::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreNotCached::class,
             ],
 
-            /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\SupervisorProgramsAreRunning::class => [
-                'programs' => [
-                    'horizon',
+            // Checks that will run only on production environment
+            'production' => [
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOff::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigCached::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreCached::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\UnwantedPhpExtensionsAreDisabled::class => [
+                    'extensions' => [
+                        'xdebug',
+                    ],
                 ],
-                'restarted_within' => 300
-            ],
-            */
+
+                /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\SupervisorProgramsAreRunning::class => [
+                    'programs' => [
+                        'horizon',
+                    ],
+                    'restarted_within' => 300
+                ],
+                */
+            ]
         ]
     ],
 
