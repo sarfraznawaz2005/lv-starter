@@ -58,6 +58,17 @@ return [
             ],
 
             /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\CheckPhpIniValues::class => [
+                'checks' => [
+                    'max_execution_time' => '36000',
+                    'memory_limit' => '512M',
+                    'display_errors' => '1',
+                    'error_reporting' => '32767',
+                ]
+            ],
+            */
+
+            /*
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\FtpConnectionWorks::class => [
                 'servers' => [
                     'myserver' => [
@@ -108,13 +119,13 @@ return [
             ],
             */
 
-           /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\HttpStatusCode::class => [
-                'sites' => [
-                    'google' => ['url' => 'http://google.com', 'expected_code' => 200],
-                ]
-            ],
-            */
+            /*
+             \Sarfraznawaz2005\ServerMonitor\Checks\Server\HttpStatusCode::class => [
+                 'sites' => [
+                     'google' => ['url' => 'http://google.com', 'expected_code' => 200],
+                 ]
+             ],
+             */
 
         ],
 
@@ -141,12 +152,35 @@ return [
                     'binary_path' => 'composer'
                 ],
 
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
+
+                /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\CorrectEnvValues::class => [
+                    'checks' => [
+                        'local' => [
+                            'path' => config_path('app.php'),
+                            'expected_values' => [
+                                'env' => 'local',
+                                'debug' => true,
+                                'url' => 'http://localhost',
+                            ]
+                        ],
+                        'production' => [
+                            'path' => config_path('app.php'),
+                            'expected_values' => [
+                                'env' => 'production',
+                                'debug' => false,
+                                'url' => 'http://mysite.com',
+                            ]
+                        ],
+                    ]
+                ],
+                */
+
                 /*
                 // requires "sensiolabs/security-checker" package.
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerPackagesSecurity::class,
                 */
-
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
 
                 /*
                 // requires "Predis\Client" package.
