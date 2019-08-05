@@ -31,7 +31,7 @@ class EnvLogoMiddleware
         $env = strtoupper(app()->environment());
 
         $logo = <<< HTML
-        <span style="background-image: radial-gradient(#70ff70, #35d635); padding:5px; width:auto; font-weight:bold; font-size:12px; font-family:arial,serif; position:fixed; bottom:0; left:0; z-index: 9999999999999999999999;">
+        <span style="background-image: radial-gradient(#70ff70, #35d635); padding:2px 5px 0 5px; width:auto; font-weight:bold; font-size:12px; font-family:arial,serif; position:fixed; bottom:0; left:0; z-index: 9999999999999999999999;">
         $env
         </span>
 HTML;
