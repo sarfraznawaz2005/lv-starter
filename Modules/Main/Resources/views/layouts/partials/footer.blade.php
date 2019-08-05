@@ -18,3 +18,4 @@
 
 @include('noty::view')
 
+@livewireAssets
