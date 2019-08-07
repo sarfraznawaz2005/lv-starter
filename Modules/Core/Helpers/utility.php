@@ -229,3 +229,10 @@ function unSlug($text)
 {
     return ucwords(str_replace(['-', '_'], [' ', ' '], $text));
 }
+
+function getSql($builder)
+{
+    $addSlashes = str_replace('?', "'?'", $builder->toSql());
+
+    return vsprintf(str_replace('?', '%s', $addSlashes), $builder->getBindings());
+}
