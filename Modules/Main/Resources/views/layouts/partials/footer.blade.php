@@ -17,6 +17,5 @@
 @stack('scripts')
 
 @include('noty::view')
-@include('sse::view')
 
 @livewireAssets
