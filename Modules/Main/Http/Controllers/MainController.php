@@ -10,6 +10,8 @@ class MainController extends CoreController
     {
         title('Welcome');
 
+        throw new \Exception('my error');
+
         return view('main::pages.home.index');
     }
 }
