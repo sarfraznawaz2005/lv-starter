@@ -14,7 +14,6 @@
         <div class="col-md-12">
             @include('flash::message')
             @include('core::shared.errors')
-            @include('core::shared.loader')
 
             @yield('content')
         </div>

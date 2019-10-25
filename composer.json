@@ -33,6 +33,7 @@
         "olssonm/l5-very-basic-auth": "^5.3",
         "qcod/laravel-imageup": "^1.0",
         "sarfraznawaz2005/emailwatch": "^1.0",
+        "sarfraznawaz2005/loading": "^1.0",
         "sarfraznawaz2005/noty": "^1.0",
         "sarfraznawaz2005/plogs": "^1.0",
         "sarfraznawaz2005/servermonitor": "^1.8",

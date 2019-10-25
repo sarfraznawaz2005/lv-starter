@@ -18,7 +18,6 @@
 
     @include('flash::message')
     @include('core::shared.errors')
-    @include('core::shared.loader')
 
     @yield('content')
     @endcard

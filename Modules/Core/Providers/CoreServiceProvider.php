@@ -18,6 +18,7 @@ use Modules\Core\Http\Middleware\HttpsProtocol;
 use Modules\Core\Http\Middleware\OptimizeMiddleware;
 use Modules\Core\Http\Middleware\WeakEtagMiddleware;
 use Modules\Core\Http\Middleware\XSSProtection;
+use Sarfraznawaz2005\Loading\Http\Middleware\LoadingMiddleware;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,8 @@ class CoreServiceProvider extends ServiceProvider
         if (config('core.settings.use_weak_etags')) {
             $kernel->pushMiddleware(WeakEtagMiddleware::class);
         }
+
+        $kernel->pushMiddleware(LoadingMiddleware::class);
 
         #################################################
         // register our commands

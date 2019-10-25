@@ -15,7 +15,7 @@ mix.babel([
 // only site-wide needed files should be added here
 mix.styles([
     'public/css/app.css',
-    'public/modules/core/css/loader.css',
+    'public/modules/core/css/common.css',
 ], 'public/css/app.css');
 
 mix.version();
