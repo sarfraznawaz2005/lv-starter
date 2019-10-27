@@ -1,3 +1,35 @@
+vendor cleanup command too slow
+npm outdated
+composer outdated
+
+-------------
+
+https://www.phptesting.org/
+https://github.com/antonioribeiro/tddd
+http://concourse.ci
+https://github.com/FriendsOfPHP/Sismo
+
+https://github.com/antonioribeiro/health
+Laravel Horizon
+
+-------------------------------
+https://github.com/bradcornford/Backup
+https://github.com/jeremykenedy/laravel-logger
+--------------------------
+
+- https://github.com/pqina/filepond
 - verify all configs and their options are used and that they are working fine
 - php artisan vendor:publish --all --force and adjust new settings by packages by comparing with git
 - compare changes in defaults in .env, composer.json, app.js, bootstrap.js, default framework config files, etc
+
+ISSUES:
+--------------------------------------
+- validate forms plugin does not show red borders - in the mean time, i added css for red borders in loader.css file.
+
+-------------------------
+
+https://github.com/mad-web/laravel-enum
+https://github.com/skrajewski/laravel-guard
+https://github.com/rennokki/guardian
+https://github.com/jeremykenedy/laravel-roles
+
