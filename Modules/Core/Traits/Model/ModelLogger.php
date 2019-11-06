@@ -62,8 +62,8 @@ trait ModelLogger
      */
     public static function registerModelLogListeners()
     {
-        $userid = static::user() ? static::user()->id : '0';
-        $username = static::user() ? static::user()->fullname : '';
+        $userid = auth()->user() ? auth()->user()->id : '0';
+        $username = auth()->user() ? auth()->user()->fullname : '';
         $modelName = isset(static::$modelLoggerName) ? static::$modelLoggerName : null;
 
         if (!$modelName) {
@@ -72,14 +72,14 @@ trait ModelLogger
         }
 
         if (!$username) {
-            if (static::user()) {
-                $username = static::user()->first_name . ' ' . static::user()->last_name;
+            if (auth()->user()) {
+                $username = auth()->user()->first_name . ' ' . auth()->user()->last_name;
             }
         }
 
         if (!$username) {
-            if (static::user()) {
-                $username = static::user()->name;
+            if (auth()->user()) {
+                $username = auth()->user()->name;
             }
         }
 
@@ -159,19 +159,5 @@ trait ModelLogger
     public function isEnabled()
     {
         return $this->modelLoggerEnabled;
-    }
-
-    /**
-     * Gets logged user instance
-     *
-     * @return bool|\Illuminate\Contracts\Auth\Authenticatable|null
-     */
-    protected static function user()
-    {
-        if (auth()->check()) {
-            return auth()->user();
-        }
-
-        return false;
     }
 }
