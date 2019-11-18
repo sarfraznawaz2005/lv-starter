@@ -124,6 +124,8 @@ class RouteList extends Command
         $methods = [
             'GET' => "<fg=black;bg=green> $method </>",
             'POST' => "<fg=black;bg=cyan> $method </>",
+            'GET|POST' => "<fg=black;bg=yellow> $method </>",
+            'GET|HEAD' => "<fg=black;bg=yellow> $method </>",
             'PUT' => "<fg=black;bg=yellow> $method </>",
             'PATCH' => "<fg=black;bg=yellow> $method </>",
             'PUT|PATCH' => "<fg=black;bg=yellow> $method </>",

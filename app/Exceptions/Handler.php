@@ -19,9 +19,6 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        HttpException::class,
-        ModelNotFoundException::class,
-        TokenMismatchException::class,
     ];
 
     /**
@@ -102,43 +99,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        $referrer = $request->server->get('referer');
-
-        // redirect to home in case of 404
-        if ($this->isHttpException($exception)) {
-            switch ($exception->getStatusCode()) {
-                case 404:
-                    return redirect('/');
-                    break;
-            }
-
-            return $this->renderHttpException($exception);
-        }
-
-        // show 404 page in case of ModelNotFoundException error
-        if ($exception instanceof ModelNotFoundException) {
-            if ($referrer) {
-                return redirect()->back()->withErrors([
-                    'error' => 'Invaid Resource!'
-                ]);
-            }
-
-            return \Response::view('errors.404', array(), 404);
-        }
-
-        // redirect user back in case of token mismatch error
-        if ($exception instanceof TokenMismatchException) {
-
-            if ($request->ajax()) {
-                return 'Sorry, your session seems to have expired. Please try again.';
-            }
-
-            return redirect()
-                ->back()
-                ->withErrors(['error' => 'Sorry, your session seems to have expired. Please try again.'])
-                ->withInput($request->except('password', 'password_confirmation', '_token'));
-        }
-
         return parent::render($request, $exception);
     }
 

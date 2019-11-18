@@ -21,3 +21,6 @@ Route::middleware('auth:api')->get('/task', function (Request $request) {
 // for API/Vue Task Component (Sample)
 Route::apiResource('tasks', 'API\TaskAPIController');
 */
+
+Route::apiResource('task', 'API\TaskAPIController');
+Route::get('task/{task}/complete', 'TaskController@complete')->name('task.complete');

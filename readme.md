@@ -1,3 +1,5 @@
+# Not maintained anymore...
+
 # Laravel Starter
 
 Laravel Starter project with useful laravel packages needed for most apps.

@@ -2,58 +2,44 @@
 
 namespace Modules\Task\Http\Controllers;
 
+use App\Actions\Task\CompleteTaskAction;
+use App\Actions\Task\DestroyTaskAction;
+use App\Actions\Task\EditTaskAction;
+use App\Actions\Task\IndexTaskAction;
+use App\Actions\Task\StoreTaskAction;
+use App\Actions\Task\UpdateTaskAction;
 use Modules\Core\Http\Controllers\CoreController;
-use Modules\Task\DataTables\TaskDataTable;
 use Modules\Task\Models\Task;
-use function addRequestVar;
-use function user;
 
 class TaskController extends CoreController
 {
-    // show listing
-    public function index(TaskDataTable $dataTable)
+    public function index(IndexTaskAction $action)
     {
-        title('Task List');
-
-        return $dataTable->render('task::pages.task.index');
+        return $action->execute();
     }
 
-    // create
-    public function store(Task $task)
+    public function store(Task $task, StoreTaskAction $action)
     {
-        addRequestVar('user_id', user()->id);
-
-        return $this->createRecord($task);
+        return $action->execute($task);
     }
 
-    // update task "complete" status
-    public function complete(Task $task)
+    public function edit(Task $task, EditTaskAction $action)
     {
-        $task->completed = !$task->completed;
-
-        return $this->updateRecord($task);
+        return $action->execute($task);
     }
 
-    // edit page
-    public function edit(Task $task)
+    public function update(Task $task, UpdateTaskAction $action)
     {
-        title('Edit Task');
-
-        // show only if logged user is owner of this record
-        $this->isOwner($task);
-
-        return view('task::pages.task.edit', compact('task'));
+        return $action->execute($task);
     }
 
-    // update
-    public function update(Task $task)
+    public function destroy(Task $task, DestroyTaskAction $action)
     {
-        return $this->updateRecord($task);
+        return $action->execute($task);
     }
 
-    // delete
-    public function destroy(Task $task)
+    public function complete(Task $task, CompleteTaskAction $action)
     {
-        return $this->deleteRecord($task);
+        return $action->execute($task);
     }
 }

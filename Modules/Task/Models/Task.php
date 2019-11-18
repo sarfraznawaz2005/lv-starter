@@ -12,13 +12,13 @@ use QCod\ImageUp\HasImageUploads;
 class Task extends CoreModel
 {
     // maintains created_by, updated_by and deleted_by
-    use Playable;
+    //use Playable;
 
     // automatic fake model id
-    use HasHashSlug;
+    //use HasHashSlug;
 
     // cache queries on the model
-    use Cacheable;
+    //use Cacheable;
 
     // to upload images
     use HasImageUploads;
