@@ -19,7 +19,7 @@ class StoreTaskAction extends Action
     {
         $this->task = $task;
 
-        request()->request->add(['user_id' => 1]);
+        request()->request->add(['user_id' => user()->id ?? 0]);
 
         $this->task->fill(request()->all());
 
