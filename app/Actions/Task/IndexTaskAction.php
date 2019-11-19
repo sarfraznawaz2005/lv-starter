@@ -21,7 +21,7 @@ class IndexTaskAction extends Action
         return true;
     }
 
-    public function execute()
+    public function __invoke()
     {
         return $this->sendResponse();
     }
@@ -31,7 +31,7 @@ class IndexTaskAction extends Action
      *
      * @return mixed
      */
-    protected function responseWeb()
+    protected function htmlResponse()
     {
         title('Task List');
 
@@ -43,7 +43,7 @@ class IndexTaskAction extends Action
      *
      * @return mixed
      */
-    protected function responseApi()
+    protected function jsonResponse()
     {
         return response()->json(Task::all(), Response::HTTP_OK);
     }

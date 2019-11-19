@@ -15,7 +15,7 @@ class StoreTaskAction extends Action
         return true;
     }
 
-    public function execute(Task $task)
+    public function __invoke(Task $task)
     {
         $this->task = $task;
 
@@ -31,7 +31,7 @@ class StoreTaskAction extends Action
      *
      * @return mixed
      */
-    protected function responseWeb()
+    protected function htmlResponse()
     {
         if (!$this->task->save()) {
             return back()->withErrors($this->task->getErrors());
@@ -47,7 +47,7 @@ class StoreTaskAction extends Action
      *
      * @return mixed
      */
-    protected function responseApi()
+    protected function jsonResponse()
     {
         if (!$this->task->save()) {
             return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);

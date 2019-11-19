@@ -1,5 +1,11 @@
 <?php
 
+use App\Actions\Task\CompleteTaskAction;
+use App\Actions\Task\DestroyTaskAction;
+use App\Actions\Task\EditTaskAction;
+use App\Actions\Task\IndexTaskAction;
+use App\Actions\Task\StoreTaskAction;
+use App\Actions\Task\UpdateTaskAction;
 use Illuminate\Http\Request;
 
 /*
@@ -22,5 +28,11 @@ Route::middleware('auth:api')->get('/task', function (Request $request) {
 Route::apiResource('tasks', 'API\TaskAPIController');
 */
 
-Route::apiResource('task', 'API\TaskAPIController');
-Route::get('task/{task}/complete', 'TaskController@complete')->name('task.complete');
+Route::group(['namespace' => '\\'], static function () {
+    Route::get('task', IndexTaskAction::class)->name('task.index');
+    Route::post('task', StoreTaskAction::class)->name('task.store');
+    Route::put('task/{task}', UpdateTaskAction::class)->name('task.update');
+    Route::delete('task/{task}', DestroyTaskAction::class)->name('task.destroy');
+    Route::get('task/{task}', EditTaskAction::class)->name('task.edit');
+    Route::get('task/{task}/complete', CompleteTaskAction::class)->name('task.complete');
+});

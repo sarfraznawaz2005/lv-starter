@@ -12,10 +12,10 @@ class EditTaskAction extends Action
 
     protected function authorize(): bool
     {
-        return $this->task->user_id === 1;
+        return $this->task->user_id === (user()->id ?? 0);
     }
 
-    public function execute(Task $task)
+    public function __invoke(Task $task)
     {
         $this->task = $task;
 
@@ -27,7 +27,7 @@ class EditTaskAction extends Action
      *
      * @return mixed
      */
-    protected function responseWeb()
+    protected function htmlResponse()
     {
         title('Edit Task');
 
@@ -41,7 +41,7 @@ class EditTaskAction extends Action
      *
      * @return mixed
      */
-    protected function responseApi()
+    protected function jsonResponse()
     {
         return response()->json($this->task, Response::HTTP_OK);
     }

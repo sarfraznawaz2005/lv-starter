@@ -12,10 +12,10 @@ class DestroyTaskAction extends Action
 
     protected function authorize(): bool
     {
-        return $this->task->user_id === 1;
+        return $this->task->user_id === (user()->id ?? 0);
     }
 
-    public function execute(Task $task)
+    public function __invoke(Task $task)
     {
         $this->task = $task;
 
@@ -27,7 +27,7 @@ class DestroyTaskAction extends Action
      *
      * @return mixed
      */
-    protected function responseWeb()
+    protected function htmlResponse()
     {
         if (!$this->task->delete()) {
             return back()->withErrors($this->task->getErrors());
@@ -43,7 +43,7 @@ class DestroyTaskAction extends Action
      *
      * @return mixed
      */
-    protected function responseApi()
+    protected function jsonResponse()
     {
         if (!$this->task->delete()) {
             return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);
