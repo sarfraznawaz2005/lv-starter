@@ -11,13 +11,10 @@ class IndexTaskAction extends Action
 {
     protected $dataTable;
 
-    public function __construct(TaskDataTable $dataTable)
+    public function __invoke(TaskDataTable $dataTable)
     {
         $this->dataTable = $dataTable;
-    }
 
-    public function __invoke()
-    {
         return $this->sendResponse();
     }
 
