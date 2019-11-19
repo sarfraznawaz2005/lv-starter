@@ -17,19 +17,24 @@ use BadMethodCallException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class Action extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected $rules = [];
+    protected $validated;
 
     /**
      * Execute the action.
      *
      * @param string $method
      * @param array $parameters
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
+     * @throws ValidationException
      */
     public function callAction($method, $parameters)
     {
@@ -37,15 +42,10 @@ abstract class Action extends BaseController
             throw new BadMethodCallException('Only __invoke method can be called on action.');
         }
 
+        $this->checkValidation();
+
         return call_user_func_array([$this, $method], $parameters);
     }
-
-    /**
-     * Authorize current action.
-     *
-     * @return mixed
-     */
-    abstract protected function authorize();
 
     /**
      * Response to be returned in case of web request.
@@ -61,18 +61,16 @@ abstract class Action extends BaseController
      */
     abstract protected function jsonResponse();
 
+    /**
+     * Sends response based on client eg html or json.
+     *
+     * @return mixed
+     */
     protected function sendResponse()
     {
         if ($this->isApi()) {
-
-            if (!$this->authorize()) {
-                return response()->json(null, Response::HTTP_NOT_FOUND);
-            }
-
             return $this->jsonResponse();
         }
-
-        abort_unless($this->authorize(), 404);
 
         return $this->htmlResponse();
     }
@@ -85,5 +83,18 @@ abstract class Action extends BaseController
     protected function isApi(): bool
     {
         return request()->expectsJson() && !request()->acceptsHtml();
+    }
+
+    /**
+     * Checks validation rules against request input and stores result in validated variable.
+     *
+     * @throws ValidationException
+     */
+    protected function checkValidation(): void
+    {
+        if (method_exists($this, 'rules')) {
+            $this->rules = $this->rules();
+            $this->validated = $this->validate(request(), $this->rules);
+        }
     }
 }

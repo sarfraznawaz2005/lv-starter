@@ -10,9 +10,16 @@ class StoreTaskAction extends Action
 {
     protected $task;
 
-    protected function authorize(): bool
+    /**
+     * Define any validation rules.
+     *
+     * @return mixed
+     */
+    protected function rules(): array
     {
-        return true;
+        return [
+            'description' => 'required|min:5',
+        ];
     }
 
     public function __invoke(Task $task)

@@ -16,11 +16,6 @@ class IndexTaskAction extends Action
         $this->dataTable = $dataTable;
     }
 
-    protected function authorize(): bool
-    {
-        return true;
-    }
-
     public function __invoke()
     {
         return $this->sendResponse();

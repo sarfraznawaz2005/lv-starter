@@ -10,9 +10,16 @@ class UpdateTaskAction extends Action
 {
     protected $task;
 
-    protected function authorize(): bool
+    /**
+     * Define any validation rules.
+     *
+     * @return mixed
+     */
+    protected function rules(): array
     {
-        return $this->task->user_id === (user()->id ?? 0);
+        return [
+            'description' => 'required|min:5',
+        ];
     }
 
     public function __invoke(Task $task)

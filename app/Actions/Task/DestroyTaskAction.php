@@ -10,11 +10,6 @@ class DestroyTaskAction extends Action
 {
     protected $task;
 
-    protected function authorize(): bool
-    {
-        return $this->task->user_id === (user()->id ?? 0);
-    }
-
     public function __invoke(Task $task)
     {
         $this->task = $task;
