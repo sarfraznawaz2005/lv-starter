@@ -8,11 +8,9 @@ use Modules\Task\Models\Task;
 
 class DestroyTaskAction extends Action
 {
-    protected $task;
-
     public function __invoke(Task $task)
     {
-        $this->task = $task;
+        $this->isOkay = $task->delete();
 
         return $this->sendResponse();
     }
@@ -24,7 +22,7 @@ class DestroyTaskAction extends Action
      */
     protected function htmlResponse()
     {
-        if (!$this->task->delete()) {
+        if (!$this->isOkay) {
             return back()->withErrors($this->task->getErrors());
         }
 
@@ -40,7 +38,7 @@ class DestroyTaskAction extends Action
      */
     protected function jsonResponse()
     {
-        if (!$this->task->delete()) {
+        if (!$this->isOkay) {
             return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 

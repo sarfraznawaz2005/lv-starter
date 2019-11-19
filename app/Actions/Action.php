@@ -28,6 +28,11 @@ abstract class Action extends BaseController
     protected $rules = [];
     protected $validData;
 
+    /*
+     * @var $isOkay bool
+     */
+    protected $isOkay = true;
+
     /**
      * Execute the action.
      *

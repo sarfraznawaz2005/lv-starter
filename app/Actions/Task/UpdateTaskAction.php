@@ -8,8 +8,6 @@ use Modules\Task\Models\Task;
 
 class UpdateTaskAction extends Action
 {
-    protected $task;
-
     /**
      * Define any validation rules.
      *
@@ -24,9 +22,9 @@ class UpdateTaskAction extends Action
 
     public function __invoke(Task $task)
     {
-        $this->task = $task;
+        $task->fill($this->validData);
 
-        $this->task->fill($this->validData);
+        $this->isOkay = $task->save();
 
         return $this->sendResponse();
     }
@@ -38,7 +36,7 @@ class UpdateTaskAction extends Action
      */
     protected function htmlResponse()
     {
-        if (!$this->task->save()) {
+        if (!$this->isOkay) {
             return back()->withErrors($this->task->getErrors());
         }
 
@@ -54,7 +52,7 @@ class UpdateTaskAction extends Action
      */
     protected function jsonResponse()
     {
-        if (!$this->task->save()) {
+        if (!$this->isOkay) {
             return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 

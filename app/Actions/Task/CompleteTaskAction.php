@@ -8,13 +8,11 @@ use Modules\Task\Models\Task;
 
 class CompleteTaskAction extends Action
 {
-    protected $task;
-
     public function __invoke(Task $task)
     {
-        $this->task = $task;
+        $task->completed = !$task->completed;
 
-        $this->task->completed = !$this->task->completed;
+        $this->isOkay = $task->save();
 
         return $this->sendResponse();
     }
@@ -26,7 +24,7 @@ class CompleteTaskAction extends Action
      */
     protected function htmlResponse()
     {
-        if (!$this->task->save()) {
+        if (!$this->isOkay) {
             return back()->withErrors($this->task->getErrors());
         }
 
@@ -42,7 +40,7 @@ class CompleteTaskAction extends Action
      */
     protected function jsonResponse()
     {
-        if (!$this->task->save()) {
+        if (!$this->isOkay) {
             return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
