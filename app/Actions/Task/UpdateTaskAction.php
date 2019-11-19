@@ -26,7 +26,7 @@ class UpdateTaskAction extends Action
     {
         $this->task = $task;
 
-        $this->task->fill($this->validated);
+        $this->task->fill($this->validData);
 
         return $this->sendResponse();
     }

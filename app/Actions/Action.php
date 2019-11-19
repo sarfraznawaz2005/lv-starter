@@ -26,7 +26,7 @@ abstract class Action extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     protected $rules = [];
-    protected $validated;
+    protected $validData;
 
     /**
      * Execute the action.
@@ -94,7 +94,7 @@ abstract class Action extends BaseController
     {
         if (method_exists($this, 'rules')) {
             $this->rules = $this->rules();
-            $this->validated = $this->validate(request(), $this->rules);
+            $this->validData = $this->validate(request(), $this->rules);
         }
     }
 }

@@ -26,7 +26,7 @@ class StoreTaskAction extends Action
     {
         $this->task = $task;
 
-        $data = $this->validated;
+        $data = $this->validData;
         $data['user_id'] = user()->id ?? 0;
 
         $this->task->fill($data);
