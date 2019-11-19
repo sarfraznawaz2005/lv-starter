@@ -84,10 +84,6 @@ abstract class Action extends BaseController
      */
     protected function isApi(): bool
     {
-        if (request()->expectsJson() && !request()->acceptsHtml()) {
-            return true;
-        }
-
-        return false;
+        return request()->expectsJson() && !request()->acceptsHtml();
     }
 }
